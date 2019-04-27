@@ -36,6 +36,7 @@ $breakpoints: (
   justify-content: space-around;
   align-items: center;
   box-shadow: 1px 4px 9px 0 $coal;
+
   img {
     width: 180px;
   }
@@ -44,6 +45,7 @@ $breakpoints: (
 
     justify-content: space-evenly;
     width: 25%;
+    font-weight: 900;
     .black {
       background: $coal;
       border: none;
