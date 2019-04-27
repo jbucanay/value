@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Play|Source+Sans+Pro");
+
+$back: #f8f1e5;
+$logo: #f9ba32;
+$coal: #2f3131;
+$mainfont: "Source Sans Pro", sans-serif;
+
+$breakpoints: (
+  "phone": 400px,
+  "phone-wide": 480px,
+  "phablet": 560px,
+  "tablet-small": 640px,
+  "tablet": 768px,
+  "tablet-wide": 1024px,
+  "desktop": 1248px,
+  "desktop-wide": 1440px
+);
+
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+.navCont {
+  background: $back;
+  display: flex;
+  padding: 1vw;
+  font-family: $mainfont;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 1px 4px 9px 0 $coal;
+  img {
+    width: 180px;
+  }
+  ul {
+    display: flex;
+
+    justify-content: space-evenly;
+    width: 25%;
+    .black {
+      background: $coal;
+      border: none;
+
+      &:hover {
+        background: #f9ba32;
+        color: #2f3131;
+      }
+    }
+  }
+}
