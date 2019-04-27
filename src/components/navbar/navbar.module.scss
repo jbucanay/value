@@ -3,6 +3,7 @@
 $back: #f8f1e5;
 $logo: #f9ba32;
 $coal: #2f3131;
+$unique: #426e86;
 $mainfont: "Source Sans Pro", sans-serif;
 
 $breakpoints: (
@@ -36,6 +37,18 @@ $breakpoints: (
   justify-content: space-around;
   align-items: center;
   box-shadow: 1px 4px 9px 0 $coal;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    h1 {
+      color: $coal;
+      font-family: $mainfont;
+    }
+  }
 
   img {
     width: 180px;
