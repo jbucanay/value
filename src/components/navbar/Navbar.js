@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./navbar.module.scss";
 import { Button } from "reactstrap";
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
         <svg height="70" width="10">
           {/* width="3" height="31" */}
           <g fill="none" stroke="#f9ba32">
-            <path d="M1 60V4" stroke-linecap="round" stroke-width=".5" />
+            <path d="M1 60V4" strokeLinecap="round" strokeWidth=".5" />
           </g>
         </svg>
         <h1>People</h1>
