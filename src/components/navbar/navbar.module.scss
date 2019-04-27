@@ -32,7 +32,6 @@ $breakpoints: (
 .navCont {
   background: $back;
   display: flex;
-  padding: 1vw;
   font-family: $mainfont;
   justify-content: space-around;
   align-items: center;
@@ -42,7 +41,11 @@ $breakpoints: (
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+
+    // svg {
+
+    // }
 
     h1 {
       color: $coal;
@@ -51,7 +54,7 @@ $breakpoints: (
   }
 
   img {
-    width: 180px;
+    width: 90px;
   }
   ul {
     display: flex;

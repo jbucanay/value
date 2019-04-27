@@ -6,19 +6,13 @@ const Navbar = () => {
     <nav className={styles.navCont}>
       <header>
         <img
-          src="https://i.postimg.cc/FKfpBPpz/android-chrome-312x312.png"
+          src="https://i.postimg.cc/5y7VP18Y/logo-via-logohub-6.png"
           alt="logo"
         />
-        <span>alue</span>
         <svg height="70" width="10">
           {/* width="3" height="31" */}
           <g fill="none" stroke="#f9ba32">
-            <path
-              stroke-width="1"
-              d="M1 60V4"
-              stroke-linecap="round"
-              stroke-width=".5"
-            />
+            <path d="M1 60V4" stroke-linecap="round" stroke-width=".5" />
           </g>
         </svg>
         <h1>People</h1>
