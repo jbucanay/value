@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./navbar.module.scss";
 import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className={styles.navCont}>
@@ -21,9 +23,11 @@ const Navbar = () => {
         <Button color="warning">People</Button>{" "}
         <Button color="warning">Leadership</Button>{" "}
         <Button color="warning">Shop</Button>{" "}
-        <Button color="secondary" className={styles.black}>
-          Login
-        </Button>
+        <Link to="/login">
+          <Button color="secondary" className={styles.black}>
+            Login
+          </Button>
+        </Link>
       </ul>
     </nav>
   );

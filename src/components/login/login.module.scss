@@ -1,0 +1,17 @@
+.formCont {
+  border: green solid 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1%;
+  height: 50%;
+  .loginForm {
+    display: flex;
+    border: solid red 1px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 20%;
+  }
+}
