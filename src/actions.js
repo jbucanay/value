@@ -3,7 +3,8 @@ const actions = {
   LASTNAME: "LASTNAME",
   IMAGE: "IMAGE",
   USERNAME: "USERNAME",
-  PASSWORD: "PASSWORD"
+  PASSWORD: "PASSWORD",
+  ADMIN: "ADMIN"
 };
 
 export default actions;

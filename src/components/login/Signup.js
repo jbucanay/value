@@ -4,7 +4,7 @@ import styles from "./login.module.scss";
 import { CustomInput } from "reactstrap";
 import { connect } from "react-redux";
 // import { makePeople } from "../../ducks/signup"; use for posting
-import actions from "../../actions";
+import { default as a } from "../../actions";
 
 class Signup extends Component {
   constructor(props) {
@@ -25,13 +25,28 @@ class Signup extends Component {
       [itemName]: itemValue
     });
   }
-  // this.props.dispatch({
-  //   type: actions.FIRSTNAME,
-  //   payload: this.state.firstName
-  // });
+
+  handleNext() {
+    const { firstName, lastName, image, admin } = this.state;
+    this.props.dispatch({
+      type: a.FIRSTNAME,
+      payload: firstName
+    });
+    this.props.dispatch({
+      type: a.LASTNAME,
+      payload: lastName
+    });
+    this.props.dispatch({
+      type: a.IMAGE,
+      payload: image
+    });
+    this.props.dispatch({
+      type: a.ADMIN,
+      payload: admin
+    });
+  }
 
   render() {
-    console.log(`for switch ${this.state.admin}`);
     return (
       <form className={styles.formCont}>
         <div className={styles.loginForm}>
@@ -62,13 +77,13 @@ class Signup extends Component {
               value={this.state.admin}
               onClick={() =>
                 this.setState({
-                  admin: true
+                  admin: !this.state.admin
                 })
               }
             />
           </label>
           <Link to="/finish">
-            <button>Next</button>
+            <button onClick={() => this.handleNext()}>Next</button>
           </Link>
         </div>
       </form>
@@ -76,13 +91,6 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
-  return {
-    firstName: reduxState.firstName
-  };
-};
+const mapStateToProps = reduxState => reduxState;
 
-export default connect(
-  mapStateToProps
-  // { makePeople }
-)(Signup);
+export default connect(mapStateToProps)(Signup);
