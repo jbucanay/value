@@ -1,31 +1,30 @@
 // initial state
-import a from "../actions";
+import actions from "../actions";
 
 const people = {
   firstName: "",
   lastName: "",
   image: "",
   username: "",
-  password: ""
+  password: "",
+  admin: false
 };
 
-export function makePeople() {
-  return {
-    addFirstName: function(name) {
-      return {
-        type: a.FIRSTNAME,
-        payload: name
-      };
-    }
-  };
-}
+/// make people for posting
+
+// export function makePeople() {
+//   return {
+//     type: actions.FIRSTNAME,
+//     payload:
+//   };
+// }
 
 export default function reducer(state = people, action) {
   switch (action.type) {
-    case a.FIRSTNAME:
+    case actions.FIRSTNAME:
       return {
         ...state,
-        firstName: action.payload
+        firstName: action.payload.name
       };
     default:
       return state;
