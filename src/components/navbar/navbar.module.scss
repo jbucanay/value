@@ -30,7 +30,7 @@ $breakpoints: (
 }
 
 .navCont {
-  background: $back;
+  background: $coal;
   display: flex;
   font-family: $mainfont;
   justify-content: space-around;
@@ -48,7 +48,7 @@ $breakpoints: (
     // }
 
     h1 {
-      color: $coal;
+      color: $logo;
       font-family: $mainfont;
     }
   }
@@ -58,19 +58,24 @@ $breakpoints: (
   }
   ul {
     display: flex;
+    color: #f8f1e5;
+    align-items: center;
 
+    list-style: none;
     justify-content: space-evenly;
     width: 19%;
     font-weight: 900;
+    li {
+      &:hover {
+        border-bottom: #f9ba32 1px solid;
+        cursor: pointer;
+      }
+    }
+
     .black {
       background: $coal;
       border: none;
-      color: #f9ba32;
-
-      &:hover {
-        background: #f9ba32;
-        color: #2f3131;
-      }
+      color: white;
     }
   }
 }

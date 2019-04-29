@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./login.module.scss";
+import { Link } from "react-router-dom";
 
 export default class Login extends Component {
   state = {
@@ -10,7 +11,7 @@ export default class Login extends Component {
     return (
       <form className={styles.formCont}>
         <div className={styles.loginForm}>
-          Sign in
+          Log in
           <label htmlFor={"username"}>
             {" "}
             <p>Username</p>
@@ -21,9 +22,12 @@ export default class Login extends Component {
             <p>Password</p>
             <input name="password" id={"password"} />
           </label>
-          <button>Login</button>
+          <button>Log in</button>
           <p>New people</p>
-          <button>Create acount</button>
+          <Link to="/signup">
+            {" "}
+            <button>Create acount</button>
+          </Link>
         </div>
       </form>
     );
