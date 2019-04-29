@@ -1,0 +1,1 @@
+INSERT INTO people (first_name, last_name, image, is_admin ) VALUES ($1, $2, $3, $4)

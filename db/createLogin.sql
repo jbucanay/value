@@ -1,0 +1,1 @@
+INSERT INTO login(username, hash) VALUES ($1, $2)
