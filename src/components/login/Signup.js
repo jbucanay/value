@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styles from "./login.module.scss";
 import { CustomInput } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 
 export default class Signup extends Component {
   render() {
     return (
-      <form className={styles.formCont}>
+      <Form className={styles.formCont}>
         <div className={styles.loginForm}>
           Create Account
           <label htmlFor={"first"}>
@@ -33,7 +34,7 @@ export default class Signup extends Component {
             <button>Next</button>
           </Link>
         </div>
-      </form>
+      </Form>
     );
   }
 }

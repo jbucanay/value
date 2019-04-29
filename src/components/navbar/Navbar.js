@@ -19,7 +19,7 @@ const Navbar = () => {
         </svg>
         <h1>People</h1>
       </header>
-
+      <input />
       <ul>
         <li>People</li>
         <li>Leadership</li>
