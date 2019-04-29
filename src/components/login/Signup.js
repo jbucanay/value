@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styles from "./login.module.scss";
 import { CustomInput } from "reactstrap";
+import { connect } from "react-redux";
+import { makePeople } from "../../ducks/signup";
 
-export default class Signup extends Component {
+class Signup extends Component {
   render() {
     return (
       <form className={styles.formCont}>
@@ -37,3 +39,14 @@ export default class Signup extends Component {
     );
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    firstName: reduxState.firstName
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { makePeople }
+)(Signup);
