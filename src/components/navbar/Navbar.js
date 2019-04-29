@@ -21,9 +21,15 @@ const Navbar = () => {
       </header>
       <input />
       <ul>
-        <li>People</li>
-        <li>Leadership</li>
-        <li>Shop</li>
+        <Link to="/">
+          <li className={styles.black}>People</li>
+        </Link>
+        <Link to="/leadership">
+          <li className={styles.black}>Leadership</li>
+        </Link>
+        <Link to="/shop">
+          <li className={styles.black}>Shop</li>
+        </Link>
         <Link to="/login">
           <li className={styles.black}>Log in</li>
         </Link>
