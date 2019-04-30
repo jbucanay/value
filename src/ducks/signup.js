@@ -10,15 +10,6 @@ const people = {
   admin: ""
 };
 
-/// make people for posting
-
-// export function makePeople() {
-//   return {
-//     type: actions.FIRSTNAME,
-//     payload:
-//   };
-// }
-
 export default function reducer(state = people, action) {
   switch (action.type) {
     case a.FIRSTNAME:

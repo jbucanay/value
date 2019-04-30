@@ -4,7 +4,8 @@ const actions = {
   IMAGE: "IMAGE",
   USERNAME: "USERNAME",
   PASSWORD: "PASSWORD",
-  ADMIN: "ADMIN"
+  ADMIN: "ADMIN",
+  POST: "POST"
 };
 
 export default actions;
