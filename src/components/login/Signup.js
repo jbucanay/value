@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./login.module.scss";
 import { CustomInput } from "reactstrap";
 import { connect } from "react-redux";
-// import { makePeople } from "../../ducks/signup"; use for posting
-import { default as a } from "../../actions";
+import { newSignUp } from "../../ducks/signup";
 
 class Signup extends Component {
   constructor(props) {
@@ -13,7 +12,9 @@ class Signup extends Component {
       firstName: "",
       lastName: "",
       image: "",
-      admin: false
+      admin: false,
+      username: "",
+      password: ""
     };
     this.handleInput = this.handleInput.bind(this);
   }
@@ -26,24 +27,16 @@ class Signup extends Component {
     });
   }
 
-  handleNext() {
-    const { firstName, lastName, image, admin } = this.state;
-    this.props.dispatch({
-      type: a.FIRSTNAME,
-      payload: firstName
-    });
-    this.props.dispatch({
-      type: a.LASTNAME,
-      payload: lastName
-    });
-    this.props.dispatch({
-      type: a.IMAGE,
-      payload: image
-    });
-    this.props.dispatch({
-      type: a.ADMIN,
-      payload: admin
-    });
+  handleNext(e) {
+    const {
+      firstName,
+      lastName,
+      image,
+      admin,
+      username,
+      password
+    } = this.state;
+    this.props.newSignUp(firstName, lastName, image, admin, username, password);
   }
 
   render() {
@@ -82,7 +75,23 @@ class Signup extends Component {
               }
             />
           </label>
-          <Link to="/finish">
+          <label htmlFor={"username"}>
+            <p>Username</p>
+            <input
+              name="username"
+              id={"username"}
+              onChange={this.handleInput}
+            />
+          </label>
+          <label htmlFor={"password"}>
+            <p>Password</p>
+            <input
+              name="password"
+              id={"password"}
+              onChange={this.handleInput}
+            />
+          </label>
+          <Link to="/">
             <button onClick={() => this.handleNext()}>Next</button>
           </Link>
         </div>
@@ -93,4 +102,7 @@ class Signup extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(Signup);
+export default connect(
+  mapStateToProps,
+  { newSignUp }
+)(Signup);

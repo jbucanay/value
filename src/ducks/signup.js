@@ -1,5 +1,6 @@
 // initial state
-import { default as a } from "../actions";
+import actions, { default as a } from "../actions";
+import Axios from "axios";
 
 const people = {
   firstName: "",
@@ -10,39 +11,40 @@ const people = {
   admin: ""
 };
 
+export function newSignUp(
+  firstName,
+  lastName,
+  image,
+  admin,
+  username,
+  password
+) {
+  return {
+    type: a.SIGNUP,
+    payload: Axios.post("/auth/signup", {
+      firstName,
+      lastName,
+      image,
+      admin,
+      username,
+      password
+    })
+  };
+}
+
 export default function reducer(state = people, action) {
   switch (action.type) {
-    case a.FIRSTNAME:
+    case `${a.SIGNUP}_FULFILLED`:
+      console.log(action.payload.data);
       return {
         ...state,
-        firstName: action.payload
+        firstName: action.payload.data.first_name,
+        lastName: action.payload.data.last_name,
+        image: actions.payload.data.image,
+        admin: action.payload.data.is_admin,
+        username: action.payload.data.username,
+        password: action.payload.data.password
       };
-    case a.LASTNAME:
-      return {
-        ...state,
-        lastName: action.payload
-      };
-    case a.IMAGE:
-      return {
-        ...state,
-        image: action.payload
-      };
-    case a.USERNAME:
-      return {
-        ...state,
-        username: action.payload
-      };
-    case a.PASSWORD:
-      return {
-        ...state,
-        password: action.payload
-      };
-    case a.ADMIN:
-      return {
-        ...state,
-        admin: action.payload
-      };
-
     default:
       return state;
   }
