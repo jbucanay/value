@@ -23,7 +23,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "nodemon chat/server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

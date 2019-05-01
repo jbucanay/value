@@ -1,0 +1,1 @@
+SELECT * FROM people where username = $1;

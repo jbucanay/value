@@ -1,6 +1,7 @@
 const actions = {
   SIGNUP: "SIGNUP",
-  USERNAMEPASS: "USERNAMEPASS"
+  USERNAMEPASS: "USERNAMEPASS",
+  LOGIN: "LOGIN"
 };
 
 export default actions;
