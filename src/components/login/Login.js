@@ -3,6 +3,7 @@ import styles from "./login.module.scss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../ducks/signup";
+import { Button } from "reactstrap";
 
 class Login extends Component {
   constructor() {
@@ -31,7 +32,6 @@ class Login extends Component {
     return (
       <form className={styles.formCont}>
         <div className={styles.loginForm}>
-          Log in
           <label htmlFor={"username"}>
             {" "}
             <p>Username</p>
@@ -50,13 +50,22 @@ class Login extends Component {
               id={"password"}
               onChange={this.handleInput}
               value={this.state.password}
+              type={"password"}
             />
           </label>
-          <button onClick={() => this.handleLogin()}>Log in</button>{" "}
-          <p>New people</p>
+          <Link to="/">
+            <Button
+              color="warning"
+              onClick={() => this.handleLogin()}
+              className={styles.loginBtn}
+            >
+              Log in
+            </Button>{" "}
+          </Link>
+          <p className={styles.p}>.</p>
           <Link to="/signup">
             {" "}
-            <button>Create acount</button>
+            <Button color="warning">Create acount</Button>
           </Link>
         </div>
       </form>

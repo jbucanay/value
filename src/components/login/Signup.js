@@ -4,6 +4,7 @@ import styles from "./login.module.scss";
 import { CustomInput } from "reactstrap";
 import { connect } from "react-redux";
 import { newSignUp } from "../../ducks/signup";
+import { Button } from "reactstrap";
 
 class Signup extends Component {
   constructor(props) {
@@ -43,7 +44,6 @@ class Signup extends Component {
     return (
       <form className={styles.formCont}>
         <div className={styles.loginForm}>
-          Create Account
           <label htmlFor={"first"}>
             <p>Your first name</p>
             <input name="firstName" id={"first"} onChange={this.handleInput} />
@@ -89,10 +89,13 @@ class Signup extends Component {
               name="password"
               id={"password"}
               onChange={this.handleInput}
+              type={"password"}
             />
           </label>
           <Link to="/">
-            <button onClick={() => this.handleNext()}>Next</button>
+            <Button color="warning" onClick={() => this.handleNext()}>
+              Secure submit
+            </Button>
           </Link>
         </div>
       </form>
