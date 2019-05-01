@@ -63,11 +63,16 @@ export default function reducer(state = people, action) {
         error: true
       };
 
-    case `${a.LOGIN}_FUFILLED`:
-      console.log(action.payload);
+    case `${a.LOGIN}_FULFILLED`:
+      console.log(action.payload.data);
       return {
         ...state,
-        logedin: true
+        firstName: action.payload.data.first,
+        lastName: action.payload.data.second,
+        image: action.payload.data.image,
+        points: action.payload.data.points,
+        logedin: true,
+        error: false
       };
 
     case `${a.LOGIN}_REJECTED`:

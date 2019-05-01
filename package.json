@@ -46,5 +46,5 @@
     "nodemon": "^1.18.11"
   },
   "main": "server/index.js",
-  "proxy": "http://localhost:4001"
+  "proxy": "http://localhost:3004"
 }

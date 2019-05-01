@@ -34,14 +34,15 @@ module.exports = {
     const results = await db.verify(username).catch(err => console.log(err));
 
     if (results[0]) {
-      const check = await bcrypt.compareSync(password, results[0].password);
+      const check = await bcrypt.compare(password, results[0].password);
       if (check) {
-        req.session.user = req.session.user = {
+        req.session.user = {
           first: results[0].first_name,
           second: results[0].last_name,
           image: results[0].image,
           points: results[0].points
         };
+        console.log(`session created with test ${req.session.user}`);
         res.status(200).json(req.session.user);
       } else {
         res.status(409).json("wrong username or password");
@@ -49,6 +50,10 @@ module.exports = {
     } else {
       res.status(409).json("wrong username or password");
     }
-    res.json(req.session.user);
+
+    console.log(" this works" + req.session.user);
+  },
+  logout: (req, res) => {
+    req.session.destroy();
   }
 };

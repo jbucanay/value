@@ -5,7 +5,9 @@ const massive = require("massive");
 const session = require("express-session");
 const { signUpPeople, login } = require("./controller/controller");
 
-const { PORT, SESSION_SECTRET, STRING } = process.env;
+app.use(express.json());
+
+const { SESSION_SECTRET, STRING } = process.env;
 app.use(express.json());
 
 massive(STRING).then(db => {
@@ -16,7 +18,7 @@ massive(STRING).then(db => {
 app.use(
   session({
     secret: SESSION_SECTRET,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
       maxAge: 600000
@@ -24,9 +26,9 @@ app.use(
   })
 );
 
+PORT = 3004;
+
 app.post("/auth/signup", signUpPeople);
 app.post("/auth/login", login);
 
-const server = app.listen(PORT, () =>
-  console.log(`server on ${server.address().port}`)
-);
+app.listen(PORT, () => console.log(`server on ${PORT}`));
