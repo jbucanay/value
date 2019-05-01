@@ -4,6 +4,11 @@ const app = express();
 const massive = require("massive");
 const session = require("express-session");
 const { signUpPeople, login } = require("./controller/controller");
+const { display } = require("./controller/cards");
+
+///// ws
+
+////
 
 app.use(express.json());
 
@@ -30,5 +35,6 @@ PORT = 3004;
 
 app.post("/auth/signup", signUpPeople);
 app.post("/auth/login", login);
+app.get("/api/people", display);
 
 app.listen(PORT, () => console.log(`server on ${PORT}`));

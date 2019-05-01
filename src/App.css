@@ -1,0 +1,12 @@
+.chat {
+  position: fixed;
+  top: 60rem;
+  right: 0;
+
+  width: 20%;
+}
+
+input::placeholder {
+  color: black;
+  font-weight: 600;
+}

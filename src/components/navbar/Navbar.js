@@ -21,6 +21,10 @@ const Navbar = () => {
       </header>
       <input />
       <ul>
+        <Link to="/profile">
+          <li className={styles.black}>Profile</li>
+        </Link>
+
         <Link to="/">
           <li className={styles.black}>People</li>
         </Link>

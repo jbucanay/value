@@ -57,10 +57,15 @@ export default function reducer(state = people, action) {
         error: false
       };
     case `${a.SIGNUP}_REJECTED`:
-      console.log(action.payload);
+      console.log(action.payload.data);
       return {
         ...state,
-        error: true
+        firstName: action.payload.data.first,
+        lastName: action.payload.data.second,
+        image: action.payload.data.image,
+        points: action.payload.data.points,
+        logedin: true,
+        error: false
       };
 
     case `${a.LOGIN}_FULFILLED`:

@@ -1,0 +1,1 @@
+SELECT people_id, first_name, last_name, image, points FROM people;
