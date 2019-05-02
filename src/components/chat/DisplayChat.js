@@ -1,20 +1,40 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styles from "./chat.module.scss";
 
 class DisplayChat extends Component {
   state = {
     peopleMessages: []
   };
-  componentDidMount() {
-    this.state.peopleMessages.push(this.props.peopleSay);
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.peopleSay !== this.props.peopleSay) {
+      this.setState({
+        peopleMessages: [...this.state.peopleMessages, this.props.peopleSay]
+      });
+    }
   }
 
   render() {
-    console.log("for checking sent array" + this.state.peopleMessages[0]);
+    if (this.state.peopleMessages.length) {
+      console.log(this.state.peopleMessages[0][0]);
+    }
 
     return (
       <div>
-        <form onSubmit={this.props.submit} />
+        {this.state.peopleMessages.map((item, index) => {
+          return (
+            <div key={index}>
+              <img
+                src={item[0].image}
+                alt="people"
+                className={styles.chatImage}
+              />
+              <p>{`${item[0].firstName} ${item[0].lastName}`}</p>
+              <pre>{item[0].message}</pre>
+            </div>
+          );
+        })}
       </div>
     );
   }

@@ -19,7 +19,7 @@ class Chat extends Component {
     this.ws.onopen = () => {
       this.props.getStatus("connected");
       this.setState({ status: "connected" });
-      this.ws.send("hello im in");
+
       console.log("connected");
     };
 
@@ -30,7 +30,7 @@ class Chat extends Component {
 
     this.ws.onclose = () => {
       this.setState({ status: "disconnected", ws: new WebSocket(URL) });
-      this.props.getStatus("connected");
+      this.props.getStatus("disconnected");
     };
   }
 
@@ -53,18 +53,18 @@ class Chat extends Component {
   };
 
   render() {
-    console.log(this.state.message);
     return (
       <div className={styles.chatCont}>
         <Card className={styles.card}>
-          <DisplayChat submit={this.submitMessage} typed={this.state.message} />
-
-          <input
-            placeholder={`Welcome ${this.props.firstName}, ${
-              this.props.lastName
-            } you are ${this.state.status}`}
-            onChange={this.makeMessage}
-          />
+          <DisplayChat />
+          <form onSubmit={e => this.submitMessage(this.state.message)}>
+            <input
+              placeholder={`Welcome ${this.props.firstName}, ${
+                this.props.lastName
+              } you are ${this.state.status}`}
+              onChange={this.makeMessage}
+            />
+          </form>
         </Card>
       </div>
     );

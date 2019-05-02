@@ -29,7 +29,6 @@ export default class People extends Component {
   }
 
   render() {
-    console.log(this.state.people);
     return (
       <div className={styles.peopleCont}>
         <div>{/* <h1>Profile pic</h1>

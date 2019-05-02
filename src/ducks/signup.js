@@ -46,7 +46,6 @@ export function loginUser(username, password) {
 export default function reducer(state = people, action) {
   switch (action.type) {
     case `${a.SIGNUP}_FULFILLED`:
-      console.log(action.payload.data);
       return {
         ...state,
         firstName: action.payload.data.first,
@@ -57,7 +56,6 @@ export default function reducer(state = people, action) {
         error: false
       };
     case `${a.SIGNUP}_REJECTED`:
-      console.log(action.payload.data);
       return {
         ...state,
         firstName: action.payload.data.first,
@@ -69,7 +67,6 @@ export default function reducer(state = people, action) {
       };
 
     case `${a.LOGIN}_FULFILLED`:
-      console.log(action.payload.data);
       return {
         ...state,
         firstName: action.payload.data.first,
@@ -81,7 +78,6 @@ export default function reducer(state = people, action) {
       };
 
     case `${a.LOGIN}_REJECTED`:
-      console.log(action.payload);
       return {
         ...state,
         error: true

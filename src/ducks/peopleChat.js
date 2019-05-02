@@ -29,9 +29,13 @@ export function getStatus(webSocketStatus) {
 export default function reducer(state = initial, action) {
   switch (action.type) {
     case a.ADDMESSAGE:
+      // let list = [];
+      // list.push(action.payload);
+      // console.log(list);
+      console.log(action.payload);
       return {
         ...state,
-        messages: [action.payload]
+        messages: [...initial.messages, action.payload]
       };
     case a.USERS:
       return {
