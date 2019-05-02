@@ -11,9 +11,6 @@ function App() {
       <Router>
         <Navbar />
         {routes}
-        <div className="chat">
-          <input placeholder="Got a question?" />
-        </div>
       </Router>
     </div>
   );

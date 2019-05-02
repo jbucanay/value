@@ -34,6 +34,9 @@ const Navbar = () => {
         <Link to="/shop">
           <li className={styles.black}>Shop</li>
         </Link>
+        <Link to="/chat">
+          <li className={styles.black}>Chat</li>
+        </Link>
         <Link to="/login">
           <li className={styles.black}>Log in</li>
         </Link>
