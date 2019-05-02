@@ -24,7 +24,9 @@
     "ws": "7.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrentely 'npm run react' 'npm run server'",
+    "server": "nodemon chatServer.js",
+    "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

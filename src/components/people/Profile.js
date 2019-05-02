@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styles from "./people.module.scss";
+
 import {
   Card,
   CardImg,
@@ -15,7 +16,7 @@ const Profile = props => {
   console.log(props);
   return (
     <div className={styles.peopleCont}>
-      <di>{/* <p></p> */}</di>
+      <div>{/* <p></p> */}</div>
       <div className={styles.card}>
         <Card>
           <CardImg top width="100%" src={props.signup.image} alt="people" />
