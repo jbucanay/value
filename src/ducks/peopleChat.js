@@ -1,8 +1,8 @@
 import { default as a } from "../actions";
 
 const initial = {
-  serverSaid: "",
   messages: [],
+
   status: ""
 };
 
@@ -12,10 +12,11 @@ export function addMessage(personSay) {
     payload: personSay
   };
 }
-export function serverSaid(input) {
+
+export function othersSay(something) {
   return {
     type: a.USERS,
-    payload: input
+    payload: something
   };
 }
 
@@ -28,19 +29,11 @@ export function getStatus(webSocketStatus) {
 
 export default function reducer(state = initial, action) {
   switch (action.type) {
-    case a.ADDMESSAGE:
-      // let list = [];
-      // list.push(action.payload);
-      // console.log(list);
-      console.log(action.payload);
-      return {
-        ...state,
-        messages: [...initial.messages, action.payload]
-      };
     case a.USERS:
+      console.log(JSON.parse(action.payload.data));
       return {
         ...state,
-        serverSaid: action.payload
+        messages: [...initial.messages, JSON.parse(action.payload.data)]
       };
 
     case a.STATUS:

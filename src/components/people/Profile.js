@@ -13,7 +13,6 @@ import {
 } from "reactstrap";
 
 const Profile = props => {
-  console.log(props);
   return (
     <div className={styles.peopleCont}>
       <div>{/* <p></p> */}</div>

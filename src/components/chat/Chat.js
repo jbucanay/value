@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card } from "reactstrap";
 import styles from "./chat.module.scss";
-import { addMessage, serverSaid, getStatus } from "../../ducks/peopleChat";
+import { addMessage, getStatus } from "../../ducks/peopleChat";
 import DisplayChat from "./DisplayChat";
 
 const URL = "ws://localhost:3030";
@@ -23,14 +23,13 @@ class Chat extends Component {
       console.log("connected");
     };
 
-    this.ws.onmessage = evt => {
-      const message = JSON.parse(evt.data);
-      this.props.serverSaid(message);
-    };
-
     this.ws.onclose = () => {
       this.setState({ status: "disconnected", ws: new WebSocket(URL) });
       this.props.getStatus("disconnected");
+    };
+
+    this.ws.onmessage = message => {
+      console.log("i got a message");
     };
   }
 
@@ -47,9 +46,7 @@ class Chat extends Component {
       lastName: this.props.lastName,
       image: this.props.image
     };
-    this.ws.send(JSON.stringify(typed));
-
-    this.props.addMessage(userSaid);
+    this.ws.send(JSON.stringify(userSaid));
   };
 
   render() {
@@ -57,12 +54,22 @@ class Chat extends Component {
       <div className={styles.chatCont}>
         <Card className={styles.card}>
           <DisplayChat />
-          <form onSubmit={e => this.submitMessage(this.state.message)}>
+          <form
+            onSubmit={e => {
+              this.submitMessage(this.state.message);
+              this.setState({ message: "" });
+            }}
+          >
             <input
-              placeholder={`Welcome ${this.props.firstName}, ${
-                this.props.lastName
-              } you are ${this.state.status}`}
+              placeholder={
+                this.state.status === "connected" && this.props.firstName
+                  ? `Welcome ${this.props.firstName}, ${
+                      this.props.lastName
+                    } you are ${this.state.status} type....`
+                  : "please login to chat..."
+              }
               onChange={this.makeMessage}
+              value={this.state.message}
             />
           </form>
         </Card>
@@ -81,5 +88,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { addMessage, serverSaid, getStatus }
+  { addMessage, getStatus }
 )(Chat);
