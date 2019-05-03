@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card } from "reactstrap";
 import styles from "./chat.module.scss";
-import { addMessage, getStatus } from "../../ducks/peopleChat";
+import { othersSay, getStatus } from "../../ducks/peopleChat";
 import DisplayChat from "./DisplayChat";
+import { getUser } from "../../ducks/signup";
 
 const URL = "ws://localhost:3030";
 
@@ -29,7 +30,8 @@ class Chat extends Component {
     };
 
     this.ws.onmessage = message => {
-      console.log("i got a message");
+      console.log(message);
+      this.props.othersSay(message);
     };
   }
 
@@ -40,11 +42,35 @@ class Chat extends Component {
   };
 
   submitMessage = typed => {
+    const time = new Date();
+    let days = [
+      "",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ];
+    let day = time.getDay();
+    let today = days[day];
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let thedate = time.getDate();
+    let date = {
+      today,
+      hours,
+      minutes,
+      thedate
+    };
+
     let userSaid = {
       message: typed,
       firstName: this.props.firstName,
       lastName: this.props.lastName,
-      image: this.props.image
+      image: this.props.image,
+      date
     };
     this.ws.send(JSON.stringify(userSaid));
   };
@@ -88,5 +114,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { addMessage, getStatus }
+  { othersSay, getStatus, getUser }
 )(Chat);

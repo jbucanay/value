@@ -69,7 +69,7 @@ $breakpoints: (
 
     list-style: none;
     justify-content: space-around;
-    width: 25%;
+    max-width: 25%;
     font-weight: 900;
     li {
       &:hover {
@@ -85,13 +85,30 @@ $breakpoints: (
     }
   }
 
-  @include mq("tablet", max) {
+  @include mq("tablet-wide", max) {
+    body {
+      margin-top: 5px;
+    }
     ul {
-      display: flex;
-      flex-direction: column;
+      width: 10%;
+      justify-content: space-evenly;
+      li {
+        font-size: 12px;
+      }
     }
     h1 {
       display: none;
+    }
+  }
+}
+
+.navCont {
+  @include mq("tablet", max) {
+    display: flex;
+    justify-content: space-around;
+    ul {
+      width: 99%;
+      border: red solid 5px;
     }
   }
 }

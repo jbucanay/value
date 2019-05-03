@@ -1,3 +1,5 @@
+@import "./.././navbar/navbar.module.scss";
+
 .peopleCont {
   display: flex;
   width: 100%;
@@ -6,5 +8,11 @@
   .card {
     align-content: center;
     width: 55%;
+  }
+
+  @include mq("tablet", max) {
+    .card {
+      width: 95%;
+    }
   }
 }

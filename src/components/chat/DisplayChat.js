@@ -24,13 +24,16 @@ class DisplayChat extends Component {
       <div>
         {this.state.peopleMessages.map((item, index) => {
           return (
-            <div key={index}>
+            <div key={index} className={styles.person}>
               <img
                 src={item[0].image}
                 alt="people"
                 className={styles.chatImage}
               />
               <p>{`${item[0].firstName} ${item[0].lastName}`}</p>
+              <p>{`${item[0].date.today} ${item[0].date.hours}:${
+                item[0].date.minutes
+              }`}</p>
               <pre>{item[0].message}</pre>
             </div>
           );

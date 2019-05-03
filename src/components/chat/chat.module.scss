@@ -1,3 +1,5 @@
+$logo: #f9ba32;
+
 .chatCont {
   display: flex;
   width: 100%;
@@ -6,11 +8,26 @@
 
   justify-content: center;
   .card {
+    overflow: scroll;
     align-content: center;
     width: 55%;
+    margin-top: 3px;
+    padding-left: 3px;
+    margin: auto;
+    display: flex;
   }
 }
 
 .chatImage {
-  width: 10%;
+  max-width: 10%;
+  border-radius: 3px;
+}
+
+.person {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: $logo 0.5rem solid;
 }

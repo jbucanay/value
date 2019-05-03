@@ -29,7 +29,7 @@ const Navbar = () => {
           <li className={styles.black}>People</li>
         </Link>
         <Link to="/leadership">
-          <li className={styles.black}>Leadership</li>
+          <li className={styles.black}>Board</li>
         </Link>
         <Link to="/shop">
           <li className={styles.black}>Shop</li>
@@ -38,7 +38,7 @@ const Navbar = () => {
           <li className={styles.black}>Chat</li>
         </Link>
         <Link to="/login">
-          <li className={styles.black}>Log in</li>
+          <li className={styles.black}>Login</li>
         </Link>
       </ul>
     </nav>

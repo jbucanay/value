@@ -6,13 +6,6 @@ const initial = {
   status: ""
 };
 
-export function addMessage(personSay) {
-  return {
-    type: a.ADDMESSAGE,
-    payload: personSay
-  };
-}
-
 export function othersSay(something) {
   return {
     type: a.USERS,
