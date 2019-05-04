@@ -16,25 +16,29 @@ class DisplayChat extends Component {
   }
 
   render() {
-    if (this.state.peopleMessages.length) {
-      console.log(this.state.peopleMessages[0][0]);
-    }
-
     return (
       <div>
         {this.state.peopleMessages.map((item, index) => {
           return (
             <div key={index} className={styles.person}>
-              <img
-                src={item[0].image}
-                alt="people"
-                className={styles.chatImage}
-              />
-              <p>{`${item[0].firstName} ${item[0].lastName}`}</p>
-              <p>{`${item[0].date.today} ${item[0].date.hours}:${
-                item[0].date.minutes
-              }`}</p>
-              <pre>{item[0].message}</pre>
+              <p className={styles.top}>{`${item[0].date.today}`} </p>
+              <div>
+                <img
+                  src={item[0].image}
+                  alt="people"
+                  className={styles.chatImage}
+                />
+
+                <div>
+                  <div className={styles.timeName}>
+                    <p>{`${item[0].firstName} ${item[0].lastName}`}</p>
+                    <span>{`${item[0].date.hours}:${
+                      item[0].date.minutes
+                    }`}</span>
+                  </div>
+                  <pre>{item[0].message}</pre>
+                </div>
+              </div>
             </div>
           );
         })}

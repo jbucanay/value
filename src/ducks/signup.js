@@ -43,6 +43,13 @@ export function loginUser(username, password) {
   };
 }
 
+export function logout() {
+  return {
+    type: a.LOGOUT,
+    payload: Axios.get("/")
+  };
+}
+
 export function getUser() {
   return {
     type: a.GETUSER,
@@ -102,6 +109,13 @@ export default function reducer(state = people, action) {
         points: action.payload.data.points,
         logedin: true,
         error: false
+      };
+
+    case `${a.LOGOUT}_FULFILLED`:
+      return {
+        function() {
+          window.location.reload();
+        }
       };
 
     default:

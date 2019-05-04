@@ -1,3 +1,5 @@
+@import ".././navbar/navbar.module.scss";
+
 body {
   background: #fafafa;
   overflow: scroll;
@@ -56,4 +58,63 @@ body {
 p {
   color: black;
   font-weight: 600;
+}
+
+.formCont {
+  @include mq("login", max) {
+    width: 100%;
+
+    .loginForm {
+      display: flex;
+      border: #dddddd 1% solid;
+      border-radius: 7px;
+      padding: 19px 20px;
+
+      justify-content: center;
+      align-items: center;
+      width: 20vmax;
+
+      button {
+        width: inherit;
+      }
+    }
+  }
+}
+.formCont {
+  @include mq("medium", max) {
+    margin: auto;
+
+    width: 100vw;
+
+    .loginForm {
+      display: flex;
+      border: #dddddd 1% solid;
+      border-radius: 7px;
+      padding: 19px 20px;
+
+      justify-content: center;
+      align-items: center;
+      width: 40vw;
+    }
+  }
+}
+
+.formCont {
+  @include mq("small", max) {
+    margin: auto;
+
+    width: 100vw;
+
+    .loginForm {
+      display: flex;
+      border: #dddddd 1% solid;
+      border-radius: 7px;
+      padding: 19px 20px;
+
+      justify-content: center;
+      align-items: center;
+      width: 50vmax;
+      background: white;
+    }
+  }
 }

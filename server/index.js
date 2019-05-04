@@ -3,7 +3,12 @@ const express = require("express");
 const app = express();
 const massive = require("massive");
 const session = require("express-session");
-const { signUpPeople, login, getSession } = require("./controller/controller");
+const {
+  signUpPeople,
+  login,
+  getSession,
+  logout
+} = require("./controller/controller");
 const { display } = require("./controller/cards");
 
 ///// ws
@@ -37,5 +42,6 @@ app.post("/auth/signup", signUpPeople);
 app.post("/auth/login", login);
 app.get("/api/people", display);
 app.get("/api/user", getSession);
+app.get("/", logout);
 
 app.listen(PORT, () => console.log(`server on ${PORT}`));

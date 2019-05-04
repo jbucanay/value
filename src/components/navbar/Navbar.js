@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./navbar.module.scss";
+import { connect } from "react-redux";
+import { logout } from "../../ducks/signup";
 
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = props => {
+  console.log(props.logIn, props.logOut);
   return (
     <nav className={styles.navCont}>
       <header>
@@ -21,9 +24,11 @@ const Navbar = () => {
       </header>
       <input />
       <ul>
-        <Link to="/profile">
-          <li className={styles.black}>Profile</li>
-        </Link>
+        {props.logIn ? (
+          <Link to="/profile">
+            <li className={styles.black}>Profile</li>
+          </Link>
+        ) : null}
 
         <Link to="/">
           <li className={styles.black}>People</li>
@@ -31,18 +36,36 @@ const Navbar = () => {
         <Link to="/leadership">
           <li className={styles.black}>Board</li>
         </Link>
-        <Link to="/shop">
-          <li className={styles.black}>Shop</li>
-        </Link>
-        <Link to="/chat">
-          <li className={styles.black}>Chat</li>
-        </Link>
-        <Link to="/login">
-          <li className={styles.black}>Login</li>
-        </Link>
+        {props.logIn ? (
+          <Link to="/shop">
+            <li className={styles.black}>Shop</li>
+          </Link>
+        ) : null}
+        {props.logIn ? (
+          <Link to="/chat">
+            <li className={styles.black}>Chat</li>
+          </Link>
+        ) : null}
+        {props.logIn ? (
+          <li onClick={() => props.logout()}>Logout</li>
+        ) : (
+          <Link to="/login">
+            <li className={styles.black}>Login</li>
+          </Link>
+        )}
       </ul>
     </nav>
   );
 };
 
-export default Navbar;
+const mapStateToProps = reduxState => {
+  return {
+    logIn: reduxState.signup.logedin,
+    logOut: reduxState.signup.logout
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);

@@ -54,7 +54,9 @@ module.exports = {
     console.log(" this works" + req.session.user);
   },
   logout: (req, res) => {
+    console.log(req.session);
     req.session.destroy();
+    res.status(200);
   },
 
   getSession: (req, res) => {

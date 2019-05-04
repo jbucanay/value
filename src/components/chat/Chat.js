@@ -20,8 +20,6 @@ class Chat extends Component {
     this.ws.onopen = () => {
       this.props.getStatus("connected");
       this.setState({ status: "connected" });
-
-      console.log("connected");
     };
 
     this.ws.onclose = () => {
@@ -88,14 +86,13 @@ class Chat extends Component {
           >
             <input
               placeholder={
-                this.state.status === "connected" && this.props.firstName
-                  ? `Welcome ${this.props.firstName}, ${
-                      this.props.lastName
-                    } you are ${this.state.status} type....`
-                  : "please login to chat..."
+                this.state.status === "connected"
+                  ? `${this.props.firstName} you are ${
+                      this.state.status
+                    } type....`
+                  : `you are ${this.state.status} ... `
               }
               onChange={this.makeMessage}
-              value={this.state.message}
             />
           </form>
         </Card>

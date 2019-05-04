@@ -9,8 +9,11 @@ $mainfont: "Source Sans Pro", sans-serif;
 $breakpoints: (
   "phone": 400px,
   "phone-wide": 480px,
-  "phablet": 560px,
+  "medium": 997px,
   "tablet-small": 640px,
+  "login": 1495,
+  "small": 549px,
+  "iphone": 400px,
   "tablet": 768px,
   "tablet-wide": 1024px,
   "desktop": 1248px,
@@ -92,6 +95,7 @@ $breakpoints: (
     ul {
       width: 10%;
       justify-content: space-evenly;
+      flex-flow: column nowrap;
       li {
         font-size: 12px;
       }
@@ -103,12 +107,12 @@ $breakpoints: (
 }
 
 .navCont {
-  @include mq("tablet", max) {
+  @include mq("medium", max) {
     display: flex;
     justify-content: space-around;
     ul {
       width: 99%;
-      border: red solid 5px;
+      justify-content: space-between;
     }
   }
 }

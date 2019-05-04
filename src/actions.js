@@ -5,7 +5,8 @@ const actions = {
   ADDMESSAGE: "ADDMESSAGE",
   USERS: "USERS",
   STATUS: "STATUS",
-  GETUSER: "GETUSER"
+  GETUSER: "GETUSER",
+  LOGOUT: "LOGOUT"
 };
 
 export default actions;
