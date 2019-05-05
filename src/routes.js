@@ -5,15 +5,11 @@ import Login from "./components/login/Login";
 import Signup from "./components/login/Signup";
 import Profile from "./components/people/Profile";
 import Chat from "./components/chat/Chat";
-import Shop from "./components/shop/Shop";
-import Leadership from "./components/leadership/Leadership";
 
 export default (
   <Switch>
     <Route path="/login" component={Login} />
     <Route path="/signup" component={Signup} />
-    <Route path="/shop" component={Shop} />
-    <Route path="/leadership" component={Leadership} />
     <Route path="/chat" component={Chat} />
     <Route path="/profile" component={Profile} />
     <Route exact path="/" component={People} />

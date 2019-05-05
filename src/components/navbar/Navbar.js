@@ -22,7 +22,7 @@ const Navbar = props => {
         </svg>
         <h1>People</h1>
       </header>
-      <input />
+
       <ul>
         {props.logIn ? (
           <Link to="/profile">
@@ -33,14 +33,7 @@ const Navbar = props => {
         <Link to="/">
           <li className={styles.black}>People</li>
         </Link>
-        <Link to="/leadership">
-          <li className={styles.black}>Board</li>
-        </Link>
-        {props.logIn ? (
-          <Link to="/shop">
-            <li className={styles.black}>Shop</li>
-          </Link>
-        ) : null}
+
         {props.logIn ? (
           <Link to="/chat">
             <li className={styles.black}>Chat</li>

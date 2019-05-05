@@ -11,6 +11,8 @@ $breakpoints: (
   "phone-wide": 480px,
   "medium": 997px,
   "tablet-small": 640px,
+  "galaxy": 360px,
+  "navbar": 865px,
   "login": 1495,
   "small": 549px,
   "iphone": 400px,
@@ -36,9 +38,9 @@ $breakpoints: (
   background: $coal;
   display: flex;
   font-family: $mainfont;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  box-shadow: 1px 4px 9px 0 $coal;
+  box-shadow: 0px 4px 4px 1px $coal;
 
   header {
     display: flex;
@@ -92,14 +94,7 @@ $breakpoints: (
     body {
       margin-top: 5px;
     }
-    ul {
-      width: 10%;
-      justify-content: space-evenly;
-      flex-flow: column nowrap;
-      li {
-        font-size: 12px;
-      }
-    }
+
     h1 {
       display: none;
     }
@@ -107,12 +102,20 @@ $breakpoints: (
 }
 
 .navCont {
-  @include mq("medium", max) {
+  @include mq("navbar", max) {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    header {
+      display: none;
+    }
+  }
+}
+
+.navCont {
+  @include mq("galaxy", max) {
+    justify-content: space-evenly;
     ul {
-      width: 99%;
-      justify-content: space-between;
+      justify-content: space-evenly;
     }
   }
 }

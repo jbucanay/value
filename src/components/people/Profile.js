@@ -8,8 +8,7 @@ import {
   CardText,
   CardBody,
   CardTitle,
-  CardSubtitle,
-  Button
+  CardSubtitle
 } from "reactstrap";
 
 const Profile = props => {
@@ -28,7 +27,6 @@ const Profile = props => {
               everyone appreciates you more than you think you deserve.”
             </CardSubtitle>
             <CardText>{props.signup.points} points</CardText>
-            <Button color="warning">Appreciate</Button>
           </CardBody>
         </Card>
       </div>

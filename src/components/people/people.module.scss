@@ -12,7 +12,7 @@
 
   @include mq("tablet", max) {
     .card {
-      width: 95%;
+      width: 100%;
     }
   }
 }
