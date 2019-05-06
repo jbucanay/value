@@ -6,9 +6,14 @@ wss.on("connection", function connection(ws) {
   console.log("client connected");
 
   ws.on("message", function incoming(data) {
+    console.log("recieved: %s ", data);
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(data);
+        try {
+          client.send(data);
+        } catch (e) {
+          client.send(e);
+        }
       }
     });
   });

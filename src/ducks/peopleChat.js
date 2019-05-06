@@ -1,8 +1,9 @@
 import { default as a } from "../actions";
+import Axios from "axios";
 
 const initial = {
   messages: [],
-
+  create: "",
   status: ""
 };
 
@@ -23,10 +24,20 @@ export function getStatus(webSocketStatus) {
 export default function reducer(state = initial, action) {
   switch (action.type) {
     case a.USERS:
-      console.log(JSON.parse(action.payload.data));
+      const chatMessage = JSON.parse(action.payload.data);
+      const userSaid = chatMessage.message;
+      const date = chatMessage.date.today;
+      const id = chatMessage.people_id;
       return {
         ...state,
-        messages: [...initial.messages, JSON.parse(action.payload.data)]
+        messages: [...initial.messages, JSON.parse(action.payload.data)],
+        create: (function() {
+          Axios.post("/api/message", {
+            message: userSaid,
+            day: date,
+            people_id: id
+          });
+        })()
       };
 
     case a.STATUS:

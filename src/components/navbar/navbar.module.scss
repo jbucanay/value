@@ -15,7 +15,7 @@ $breakpoints: (
   "navbar": 865px,
   "login": 1495,
   "small": 549px,
-  "iphone": 400px,
+  "iphone": 415px,
   "tablet": 768px,
   "tablet-wide": 1024px,
   "desktop": 1248px,
@@ -106,16 +106,40 @@ $breakpoints: (
     display: flex;
     justify-content: space-evenly;
     header {
-      display: none;
+      display: hidden;
     }
   }
 }
 
 .navCont {
-  @include mq("galaxy", max) {
+  @include mq("iphone", max) {
+    box-shadow: none;
+    height: 6vh;
+    position: sticky;
+    top: 0;
+    z-index: 2;
     justify-content: space-evenly;
+    padding-right: 3rem;
+
+    width: 100%;
+    header {
+      visibility: visible;
+
+      width: 4vh;
+      img {
+        width: 55px;
+      }
+    }
     ul {
       justify-content: space-evenly;
+      background: none;
+      padding-left: 1rem;
+
+      li {
+        background: none;
+        padding: none;
+        all: unset;
+      }
     }
   }
 }

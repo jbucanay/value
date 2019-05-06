@@ -1,1 +1,1 @@
-SELECT people_id, first_name, last_name, image, points FROM people;
+SELECT people_id, first_name, last_name, image, people_id FROM people;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styles from "./login.module.scss";
-import { CustomInput } from "reactstrap";
+
 import { connect } from "react-redux";
 import { newSignUp } from "../../ducks/signup";
 import { Button } from "reactstrap";
@@ -13,7 +13,7 @@ class Signup extends Component {
       firstName: "",
       lastName: "",
       image: "",
-      admin: false,
+
       username: "",
       password: ""
     };
@@ -33,11 +33,11 @@ class Signup extends Component {
       firstName,
       lastName,
       image,
-      admin,
+
       username,
       password
     } = this.state;
-    this.props.newSignUp(firstName, lastName, image, admin, username, password);
+    this.props.newSignUp(firstName, lastName, image, username, password);
   }
 
   render() {
@@ -61,20 +61,7 @@ class Signup extends Component {
               onChange={this.handleInput}
             />
           </label>
-          <label>
-            <p>Admin</p>
-            <CustomInput
-              type="switch"
-              id="exampleCustomSwitch"
-              name="admin"
-              value={this.state.admin}
-              onClick={() =>
-                this.setState({
-                  admin: !this.state.admin
-                })
-              }
-            />
-          </label>
+          <label />
           <label htmlFor={"username"}>
             <p>Username</p>
             <input

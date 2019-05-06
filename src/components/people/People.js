@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
 import styles from "./people.module.scss";
 
@@ -47,7 +40,6 @@ export default class People extends Component {
                       everyone appreciates you more than you think you deserve.”
                     </CardSubtitle>
                   </CardTitle>
-                  <CardText>{item.points} points</CardText>
                 </CardBody>
               </Card>
             );

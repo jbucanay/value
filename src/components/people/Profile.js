@@ -2,14 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styles from "./people.module.scss";
 
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle
-} from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
 const Profile = props => {
   return (
@@ -26,7 +19,6 @@ const Profile = props => {
               “Somewhere in this small world, you can find a place where
               everyone appreciates you more than you think you deserve.”
             </CardSubtitle>
-            <CardText>{props.signup.points} points</CardText>
           </CardBody>
         </Card>
       </div>

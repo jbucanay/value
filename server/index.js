@@ -10,6 +10,7 @@ const {
   logout
 } = require("./controller/controller");
 const { display } = require("./controller/cards");
+const { create } = require("./chatCont");
 
 ///// ws
 
@@ -43,5 +44,6 @@ app.post("/auth/login", login);
 app.get("/api/people", display);
 app.get("/api/user", getSession);
 app.get("/", logout);
+app.post("/api/message", create);
 
 app.listen(PORT, () => console.log(`server on ${PORT}`));

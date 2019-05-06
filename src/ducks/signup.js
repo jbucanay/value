@@ -8,8 +8,8 @@ const people = {
   image: "",
   username: "",
   password: "",
-  admin: "",
-  points: null,
+
+  people_id: "",
   logedin: false,
   logout: false,
   error: false
@@ -19,7 +19,7 @@ export function newSignUp(
   firstName,
   lastName,
   image,
-  admin,
+
   username,
   password
 ) {
@@ -29,7 +29,7 @@ export function newSignUp(
       firstName,
       lastName,
       image,
-      admin,
+
       username,
       password
     })
@@ -67,7 +67,6 @@ export default function reducer(state = people, action) {
         firstName: action.payload.data.first,
         lastName: action.payload.data.second,
         image: action.payload.data.image,
-        points: action.payload.data.points,
         logedin: true,
         error: false
       };
@@ -77,7 +76,6 @@ export default function reducer(state = people, action) {
         firstName: action.payload.data.first,
         lastName: action.payload.data.second,
         image: action.payload.data.image,
-        points: action.payload.data.points,
         logedin: true,
         error: false
       };
@@ -88,7 +86,7 @@ export default function reducer(state = people, action) {
         firstName: action.payload.data.first,
         lastName: action.payload.data.second,
         image: action.payload.data.image,
-        points: action.payload.data.points,
+        people_id: action.payload.data.people_id,
         logedin: true,
         error: false
       };
@@ -100,13 +98,12 @@ export default function reducer(state = people, action) {
       };
 
     case `${a.GETUSER}_FULFILLED`:
-      console.log(action.payload.data);
       return {
         ...state,
         firstName: action.payload.data.first,
         lastName: action.payload.data.second,
         image: action.payload.data.image,
-        points: action.payload.data.points,
+        people_id: action.payload.data.people_id,
         logedin: true,
         error: false
       };

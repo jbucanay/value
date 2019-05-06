@@ -20,6 +20,7 @@ class Chat extends Component {
     this.ws.onopen = () => {
       this.props.getStatus("connected");
       this.setState({ status: "connected" });
+      console.log("connected");
     };
 
     this.ws.onclose = () => {
@@ -28,7 +29,6 @@ class Chat extends Component {
     };
 
     this.ws.onmessage = message => {
-      console.log(message);
       this.props.othersSay(message);
     };
   }
@@ -42,14 +42,13 @@ class Chat extends Component {
   submitMessage = typed => {
     const time = new Date();
     let days = [
-      "",
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
-      "Saturday",
-      "Sunday"
+      "Saturday"
     ];
     let day = time.getDay();
     let today = days[day];
@@ -68,6 +67,7 @@ class Chat extends Component {
       firstName: this.props.firstName,
       lastName: this.props.lastName,
       image: this.props.image,
+      people_id: this.props.people_id,
       date
     };
     this.ws.send(JSON.stringify(userSaid));
@@ -86,11 +86,11 @@ class Chat extends Component {
           >
             <input
               placeholder={
-                this.state.status === "connected"
+                this.state.status === "connected" && this.props.firstName
                   ? `${this.props.firstName} you are ${
                       this.state.status
                     } type....`
-                  : `you are ${this.state.status} ... `
+                  : `you are disconnected ... `
               }
               onChange={this.makeMessage}
             />
@@ -105,7 +105,8 @@ const mapStateToProps = reduxState => {
   return {
     firstName: reduxState.signup.firstName,
     lastName: reduxState.signup.lastName,
-    image: reduxState.signup.image
+    image: reduxState.signup.image,
+    people_id: reduxState.signup.people_id
   };
 };
 

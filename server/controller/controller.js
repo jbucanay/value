@@ -13,14 +13,14 @@ module.exports = {
       const hash = bcrypt.hashSync(password, salt);
 
       const register = await db
-        .createPeople([firstName, lastName, image, admin, username, hash])
+        .createPeople([firstName, lastName, image, username, hash])
         .catch(err => console.log(err));
 
       req.session.user = {
         first: register[0].first_name,
         second: register[0].last_name,
         image: register[0].image,
-        points: register[0].points
+        people_id: register[0].people_id
       };
       res.status(200).json(req.session.user);
     }
@@ -40,9 +40,9 @@ module.exports = {
           first: results[0].first_name,
           second: results[0].last_name,
           image: results[0].image,
-          points: results[0].points
+          people_id: results[0].people_id
         };
-        console.log(`session created with test ${req.session.user}`);
+
         res.status(200).json(req.session.user);
       } else {
         res.status(409).json("wrong username or password");
@@ -50,8 +50,6 @@ module.exports = {
     } else {
       res.status(409).json("wrong username or password");
     }
-
-    console.log(" this works" + req.session.user);
   },
   logout: (req, res) => {
     console.log(req.session);
