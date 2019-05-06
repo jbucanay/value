@@ -15,21 +15,14 @@ const people = {
   error: false
 };
 
-export function newSignUp(
-  firstName,
-  lastName,
-  image,
-
-  username,
-  password
-) {
+export function newSignUp(firstName, lastName, username, url, password) {
+  console.log(url);
   return {
     type: a.SIGNUP,
     payload: Axios.post("/auth/signup", {
       firstName,
       lastName,
-      image,
-
+      url,
       username,
       password
     })

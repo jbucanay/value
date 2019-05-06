@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styles from "./login.module.scss";
-
+import { storage } from "../../firebase";
 import { connect } from "react-redux";
 import { newSignUp } from "../../ducks/signup";
 import { Button } from "reactstrap";
@@ -13,7 +13,7 @@ class Signup extends Component {
       firstName: "",
       lastName: "",
       image: "",
-
+      url: "",
       username: "",
       password: ""
     };
@@ -26,21 +26,44 @@ class Signup extends Component {
     this.setState({
       [itemName]: itemValue
     });
+    this.handleImage = this.handleImage.bind(this);
   }
 
-  handleNext(e) {
-    const {
-      firstName,
-      lastName,
-      image,
+  handleImage = e => {
+    const { image } = this.state;
+    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    uploadTask.on(
+      "state_changed",
+      snapshot => {},
+      error => {
+        console.log(error);
+      },
+      () => {
+        /// complete function
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            this.setState({ url }, () => this.handleNext());
+          });
+      }
+    );
+  };
 
-      username,
-      password
-    } = this.state;
-    this.props.newSignUp(firstName, lastName, image, username, password);
+  handleNext(e) {
+    const { firstName, lastName, username, url, password } = this.state;
+    console.log(url);
+    this.props
+      .newSignUp(firstName, lastName, username, url, password)
+      .then(() => {
+        console.log("REROUTE");
+        this.props.history.push("/");
+      });
   }
 
   render() {
+    console.log(this.state.password);
     return (
       <form className={styles.formCont}>
         <div className={styles.loginForm}>
@@ -55,11 +78,18 @@ class Signup extends Component {
           <label htmlFor={"image"}>
             <p>Image</p>
             <input
+              type="file"
               name="image"
               id={"image"}
               title=" "
-              onChange={this.handleInput}
+              onChange={e => {
+                if (e.target.files[0]) {
+                  const image = e.target.files[0];
+                  this.setState({ image });
+                }
+              }}
             />
+            {/* <button onClick={this.handleImage}>Button</button> */}
           </label>
           <label />
           <label htmlFor={"username"}>
@@ -79,11 +109,11 @@ class Signup extends Component {
               type={"password"}
             />
           </label>
-          <Link to="/">
-            <Button color="warning" onClick={() => this.handleNext()}>
-              Secure submit
-            </Button>
-          </Link>
+          {/* <Link to="/"> */}
+          <Button color="warning" onClick={() => this.handleImage()}>
+            Secure submit
+          </Button>
+          {/* </Link> */}
         </div>
       </form>
     );
