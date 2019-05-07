@@ -39,7 +39,9 @@ const Navbar = props => {
           </Link>
         ) : null}
         {props.logIn ? (
-          <li onClick={() => props.logout()}>Logout</li>
+          <Link to="/">
+            <li onClick={() => props.logout()}>Logout</li>
+          </Link>
         ) : (
           <Link to="/login">
             <li className={styles.black}>Login</li>

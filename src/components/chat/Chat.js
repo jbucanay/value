@@ -1,17 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Card } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import styles from "./chat.module.scss";
 import { othersSay, getStatus } from "../../ducks/peopleChat";
 import DisplayChat from "./DisplayChat";
 import { getUser } from "../../ducks/signup";
+import Axios from "axios";
 
 const URL = "ws://localhost:3030";
 
 class Chat extends Component {
   state = {
     message: "",
-    status: ""
+    status: "",
+    people: ""
   };
 
   ws = new WebSocket(URL);
@@ -21,6 +23,12 @@ class Chat extends Component {
       this.props.getStatus("connected");
       this.setState({ status: "connected" });
       console.log("connected");
+
+      Axios.get("/api/people").then(results =>
+        this.setState({
+          people: results.data
+        })
+      );
     };
 
     this.ws.onclose = () => {
@@ -76,6 +84,33 @@ class Chat extends Component {
   render() {
     return (
       <div className={styles.chatCont}>
+        <Card className={styles.cardNav}>
+          <h2 className={styles.title}>People</h2>
+          <div className={styles.innerNav}>
+            {this.state.people
+              ? this.state.people.map(item => {
+                  return (
+                    <Card key={item.people_id} className={styles.cardPeople}>
+                      <CardImg top width="100%" src={item.image} alt="people" />
+                      <CardBody>
+                        <CardTitle>
+                          {`${item.first_name} ${item.last_name}`}
+                        </CardTitle>
+                        <CardTitle>
+                          <CardSubtitle>
+                            {/* “Somewhere in this small world, you can find a place
+                            where everyone appreciates you more than you think
+                            you deserve.” */}
+                          </CardSubtitle>
+                        </CardTitle>
+                      </CardBody>
+                    </Card>
+                  );
+                })
+              : null}
+          </div>
+        </Card>
+
         <Card className={styles.card}>
           <DisplayChat />
           <form
@@ -96,6 +131,9 @@ class Chat extends Component {
             />
           </form>
         </Card>
+        {/* <Card className={styles.cardNav}>
+          <p>Profile</p>
+        </Card> */}
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 import styles from "./login.module.scss";
 import { storage } from "../../firebase";
 import { connect } from "react-redux";
@@ -76,7 +76,7 @@ class Signup extends Component {
             <input name="lastName" id={"last"} onChange={this.handleInput} />
           </label>
           <label htmlFor={"image"}>
-            <p>Image</p>
+            <p>Profile image</p>
             <input
               type="file"
               name="image"

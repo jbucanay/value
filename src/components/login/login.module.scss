@@ -1,7 +1,6 @@
 @import ".././navbar/navbar.module.scss";
 
 body {
-  background: #fafafa;
   overflow: scroll;
 }
 
@@ -29,6 +28,10 @@ body {
       line-height: normal;
     }
 
+    input[type="file"] {
+      width: 12rem;
+      color: transparent;
+    }
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3);
     button {
       width: 100%;
@@ -113,6 +116,11 @@ p {
       align-items: center;
       width: 100vw;
       background: none;
+
+      input[type="file"] {
+        width: 12rem;
+        color: transparent;
+      }
     }
   }
 }

@@ -7,12 +7,38 @@
   justify-content: center;
   .card {
     align-content: center;
-    width: 55%;
+    width: 25%;
+    box-shadow: none;
   }
 
   @include mq("tablet", max) {
+    flex-direction: column;
     .card {
       width: 100%;
     }
+    .cardNav {
+      position: sticky;
+      width: 100%;
+      border: none;
+      z-index: 2;
+      border-radius: none;
+      top: 2.8rem;
+      margin-left: none;
+    }
   }
+}
+
+.cardNav {
+  width: 10%;
+  height: 10%;
+  background: #fafafa;
+  margin: 1rem;
+  position: sticky;
+  top: 4rem;
+  box-shadow: none;
+  border: none;
+}
+
+.cardPeople {
+  box-shadow: none;
 }

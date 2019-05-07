@@ -23,12 +23,20 @@ export default class People extends Component {
   render() {
     return (
       <div className={styles.peopleCont}>
-        <div>{/* <h1>Profile pic</h1>
-          <h1>Profile</h1> */}</div>
+        <Card className={styles.cardNav}>
+          <p>Chat by day</p>
+          <p>Monday</p>
+          <p>Tuesday</p>
+          <p>Wednesday</p>
+          <p>Thursday</p>
+          <p>Friday</p>
+          <p>Saturday</p>
+          <p>Sunday</p>
+        </Card>
         <div className={styles.card}>
           {this.state.people.map(item => {
             return (
-              <Card key={item.people_id}>
+              <Card key={item.people_id} className={styles.cardPeople}>
                 <CardImg top width="100%" src={item.image} alt="people" />
                 <CardBody>
                   <CardTitle>
@@ -45,6 +53,9 @@ export default class People extends Component {
             );
           })}
         </div>
+        <Card className={styles.cardNav}>
+          <p>Updates</p>
+        </Card>
       </div>
     );
   }

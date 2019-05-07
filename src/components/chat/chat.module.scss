@@ -5,23 +5,21 @@ $logo: #f9ba32;
 .chatCont {
   display: flex;
   width: 100%;
-  position: absolute;
-  bottom: 0;
-
-  justify-content: center;
+  border: blue solid 1px;
+  justify-content: space-evenly;
   .card {
     overflow-y: scroll;
     overflow-x: hidden;
-    align-content: center;
-    width: 55%;
+    align-items: center;
+    width: 25%;
     margin-top: 3px;
     padding-left: 3px;
     margin: auto;
     display: flex;
 
-    position: fixed;
+    position: sticky;
     bottom: 0px;
-    max-height: 90vh;
+    // max-height: 90vh;
 
     @include mq("tablet", max) {
       width: 100vw;
@@ -100,4 +98,23 @@ $logo: #f9ba32;
       width: 100%;
     }
   }
+}
+
+.cardNav {
+  border: red solid 1px;
+  width: 10%;
+
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  overflow: scroll;
+  top: 6rem;
+}
+
+.title {
+  position: fixed;
+  top: 4rem;
+  z-index: 10;
+  width: 100%;
+  background: white;
 }
