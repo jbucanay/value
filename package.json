@@ -21,12 +21,14 @@
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-promise-middleware": "^6.1.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "utf-8-validate": "5.0.2",
     "ws": "7.0.0"
   },
   "scripts": {
     "start": "concurrentely 'npm run react' 'npm run server'",
-    "server": "nodemon chatServer.js",
+    "server": "nodemon src/chatServer.js",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

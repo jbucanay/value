@@ -54,7 +54,7 @@ export default class People extends Component {
           })}
         </div>
         <Card className={styles.cardNav}>
-          <p>Updates</p>
+          <p>Online</p>
         </Card>
       </div>
     );

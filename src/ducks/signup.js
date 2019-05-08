@@ -8,7 +8,6 @@ const people = {
   image: "",
   username: "",
   password: "",
-
   people_id: "",
   logedin: false,
   logout: false,
