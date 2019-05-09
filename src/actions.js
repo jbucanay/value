@@ -8,15 +8,7 @@ const actions = {
   GETUSER: "GETUSER",
   LOGOUT: "LOGOUT",
   //// chat
-  USER_IN: "USER_IN",
-  COMMUNITY_CHAT: "COMMUNITY_CHAT",
-  USER_ID: "USER_ID",
-  MESSAGE_IN: "MESSAGE_IN",
-  MESSAGE_OUT: "MESSAGE_OUT",
-  USER_OUT: "USER_OUT",
-  TYPING: "TYPING",
-  VERIFY_USER: "VERIFY_USER",
-  OUT: "OUT"
+  MESSAGE: "MESSAGE"
 };
 
 export default actions;

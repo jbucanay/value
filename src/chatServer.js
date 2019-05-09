@@ -1,7 +1,7 @@
 const app = require("express")();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
-
+const moment = require("moment");
 const PORT = 3131;
 
 server.listen(PORT, () => {
@@ -27,13 +27,21 @@ io.on("connection", function(socket) {
   console.log("new user connected");
   socket.on("new_user", user => {
     socket.user = user;
-    if (user.firstName !== "" && user.lastName !== "") {
-      emitVisitors();
-      console.log(user);
-    }
-  });
-  socket.on("disconnect", function() {
     emitVisitors();
-    console.log("user diconnected");
+    console.log("user connected");
+    socket.on("disconnect", function() {
+      emitVisitors();
+      console.log("user diconnected");
+    });
+  });
+  socket.on("message", msg => {
+    const time = moment().format("LT");
+    const day = moment().format("dddd");
+    const userMessage = {
+      msg,
+      time,
+      day
+    };
+    socket.broadcast.emit("user_message", userMessage);
   });
 });

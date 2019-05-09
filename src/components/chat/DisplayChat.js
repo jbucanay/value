@@ -21,22 +21,20 @@ class DisplayChat extends Component {
         {this.state.peopleMessages.map((item, index) => {
           return (
             <div key={index} className={styles.person}>
-              <p className={styles.top}>{`${item[0].date.today}`} </p>
+              <p className={styles.top}>{`${item[0].day}`} </p>
               <div>
                 <img
-                  src={item[0].image}
+                  src={item[0].msg.image}
                   alt="people"
                   className={styles.chatImage}
                 />
 
                 <div>
                   <div className={styles.timeName}>
-                    <p>{`${item[0].firstName} ${item[0].lastName}`}</p>
-                    <span>{`${item[0].date.hours}:${
-                      item[0].date.minutes
-                    }`}</span>
+                    <p>{`${item[0].msg.firstName} ${item[0].msg.lastName}`}</p>
+                    <span>{item[0].time}</span>
                   </div>
-                  <pre>{item[0].message}</pre>
+                  <pre>{item[0].msg.message}</pre>
                 </div>
               </div>
             </div>
@@ -49,7 +47,10 @@ class DisplayChat extends Component {
 
 const mapState = reduxState => {
   return {
-    peopleSay: reduxState.peopleChat.messages
+    peopleSay: reduxState.peopleChat.messages,
+    people_id: reduxState.signup.people_id,
+    day: reduxState.peopleChat.messages,
+    message: reduxState.peopleChat.messages
   };
 };
 

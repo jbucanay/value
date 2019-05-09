@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card } from "reactstrap";
-import styles from "./chat.module.scss";
-import { setUser } from "../../ducks/peopleChat";
 import { getUser } from "../../ducks/signup";
+import styles from "./chat.module.scss";
+import { getMessage } from "../../ducks/peopleChat";
+
 import DisplayChat from "./DisplayChat";
 import io from "socket.io-client";
 import Axios from "axios";
@@ -18,7 +19,6 @@ class Chat extends Component {
       status: "",
       people: [],
       online: ""
-      // filter: ""
     };
   }
 
@@ -42,15 +42,13 @@ class Chat extends Component {
         people: results.data
       })
     );
+    if (this.props.firstName !== "" && this.props.firstName !== "") {
+      const { socket } = this.state;
 
-    const { socket } = this.state;
-
-    if (this.props.firstName && this.props.firstName) {
       const logged = {
         firstName: this.props.firstName,
         lastName: this.props.lastName,
-        image: this.props.image,
-        people_id: this.state.people_id
+        image: this.props.image
       };
 
       socket.on("connect", () => {
@@ -60,6 +58,10 @@ class Chat extends Component {
         });
       });
     }
+    const { socket } = this.state;
+    socket.on("user_message", userMessage => {
+      this.props.getMessage(userMessage);
+    });
   }
 
   makeMessage = e => {
@@ -69,13 +71,7 @@ class Chat extends Component {
   };
 
   render() {
-    // if (this.state.online) {
-    //   const filter = this.state.online.filter(item => item !== null);
-    //   this.setState({
-    //     filter
-    //   });
-    // }
-    // console.log(this.state.filter);
+    console.log(this.state.message);
     return (
       <div className={styles.chatCont}>
         <Card className={styles.cardNav}>
@@ -94,35 +90,57 @@ class Chat extends Component {
           <DisplayChat />
           <form
             onSubmit={e => {
-              e.preventDefault();
+              const { socket } = this.state;
 
-              this.setState({ message: "" });
+              const userMessage = {
+                firstName: this.props.firstName,
+                lastName: this.props.lastName,
+                image: this.props.image,
+                message: this.state.message
+              };
+              e.preventDefault();
+              socket.emit("message", userMessage);
+
+              if (this.props.people_id !== "") {
+                let date = new Date().getDay();
+                let days = [
+                  "Sunday",
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday"
+                ];
+                Axios.post("/api/message", {
+                  people_id: this.props.people_id,
+                  message: this.state.message,
+                  day: days[date]
+                });
+                this.setState({
+                  message: ""
+                });
+              }
             }}
           >
             <input
-              placeholder={
-                this.state.status === "connected" && this.props.firstName
-                  ? `${this.props.firstName} you are ${
-                      this.state.status
-                    } type....`
-                  : `you are disconnected ... `
-              }
+              placeholder={"  > Value chat..."}
               onChange={this.makeMessage}
+              value={this.state.message}
             />
           </form>
         </Card>
         <Card className={styles.cardAbout}>
-          <p>online</p>
+          <p>online </p>
           {this.state.online &&
             this.state.online
               .filter(item => item !== null)
-              .map(item => {
+              .map((item, index) => {
                 return (
-                  <div>
+                  <div key={index}>
                     <p>
                       {item.firstName} {item.lastName}
                     </p>
-
                     <img src={item.image} alt="" />
                   </div>
                 );
@@ -144,5 +162,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { setUser, getUser }
+  { getMessage, getUser }
 )(Chat);

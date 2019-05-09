@@ -11,7 +11,8 @@ const people = {
   people_id: "",
   logedin: false,
   logout: false,
-  error: false
+  error: false,
+  reload: ""
 };
 
 export function newSignUp(firstName, lastName, username, url, password) {
@@ -90,6 +91,7 @@ export default function reducer(state = people, action) {
       };
 
     case `${a.GETUSER}_FULFILLED`:
+      console.log(action.payload);
       return {
         ...state,
         firstName: action.payload.data.first,
@@ -102,9 +104,9 @@ export default function reducer(state = people, action) {
 
     case `${a.LOGOUT}_FULFILLED`:
       return {
-        function() {
+        reload: (function() {
           window.location.reload();
-        }
+        })()
       };
 
     default:

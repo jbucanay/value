@@ -24,14 +24,24 @@ export default class People extends Component {
     return (
       <div className={styles.peopleCont}>
         <Card className={styles.cardNav}>
-          <p>Chat by day</p>
-          <p>Monday</p>
-          <p>Tuesday</p>
-          <p>Wednesday</p>
-          <p>Thursday</p>
-          <p>Friday</p>
-          <p>Saturday</p>
-          <p>Sunday</p>
+          <p className={styles.head}>
+            <i className="fas fa-comment-alt" /> Chat Rooms
+          </p>
+
+          <p className={styles.one}>
+            {" "}
+            <i className="fas fa-seedling" /> Ideas
+          </p>
+          <p className={styles.two}>
+            <i className="fab fa-slideshare"> Collaboration </i>
+          </p>
+          <p className={styles.three}>
+            <i className="fab fa-stack-overflow"> Share </i>
+          </p>
+
+          <p className={styles.four}>
+            <i className="far fa-clock"> Calendar </i>
+          </p>
         </Card>
         <div className={styles.card}>
           {this.state.people.map(item => {
@@ -44,8 +54,7 @@ export default class People extends Component {
                   </CardTitle>
                   <CardTitle>
                     <CardSubtitle>
-                      “Somewhere in this small world, you can find a place where
-                      everyone appreciates you more than you think you deserve.”
+                      <p>Chat</p>
                     </CardSubtitle>
                   </CardTitle>
                 </CardBody>
@@ -54,7 +63,7 @@ export default class People extends Component {
           })}
         </div>
         <Card className={styles.cardNav}>
-          <p>Online</p>
+          <p>Updates</p>
         </Card>
       </div>
     );

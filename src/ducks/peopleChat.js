@@ -1,23 +1,23 @@
 import { default as a } from "../actions";
 
 const initialState = {
-  user: null
+  messages: []
 };
 
-export function setUser(userin) {
+export function getMessage(message) {
   return {
-    type: a.USER_IN,
-    payload: userin
+    type: a.MESSAGE,
+    payload: message
   };
 }
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case a.USER_IN:
+    case a.MESSAGE:
       return {
         ...state,
-        user: payload
+        messages: [...initialState.messages, payload]
       };
     default:
       return state;

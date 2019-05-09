@@ -16,8 +16,8 @@ const Profile = props => {
               props.signup.lastName
             }`}</CardTitle>
             <CardSubtitle>
-              “Somewhere in this small world, you can find a place where
-              everyone appreciates you more than you think you deserve.”
+              <button>Edit Profile</button>
+              <button>Delete Account</button>
             </CardSubtitle>
           </CardBody>
         </Card>

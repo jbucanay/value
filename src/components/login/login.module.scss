@@ -9,17 +9,18 @@ body {
   align-items: center;
   justify-content: center;
   padding-top: 2%;
-  height: 40%;
-
+  height: 50%;
+  background: #3375aa;
+  padding-bottom: 2%;
   .loginForm {
     display: flex;
     border: #dddddd 1px solid;
     border-radius: 7px;
-    padding: 19px 20px;
+    width: 2px;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 16%;
     background: white;
 
     input {
@@ -41,6 +42,7 @@ body {
 
 .p {
   color: white;
+
   margin-top: 2rem;
   width: 69%;
   background: linear-gradient(
@@ -72,7 +74,7 @@ p {
 
       justify-content: center;
       align-items: center;
-      width: 40vw;
+      width: 23vw;
 
       button {
         width: inherit;
@@ -114,13 +116,22 @@ p {
 
       justify-content: center;
       align-items: center;
-      width: 100vw;
-      background: none;
+      width: 60vw;
+      background: white;
 
       input[type="file"] {
         width: 12rem;
         color: transparent;
       }
+    }
+  }
+}
+
+.formCont {
+  @include mq("desktop-wide", min) {
+    .loginForm {
+      width: 15vw;
+      padding: 15px 15px;
     }
   }
 }

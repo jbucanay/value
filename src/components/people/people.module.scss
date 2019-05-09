@@ -7,7 +7,7 @@
   justify-content: center;
   .card {
     align-content: center;
-    width: 25%;
+    width: 35%;
     box-shadow: none;
   }
 
@@ -34,9 +34,53 @@
   background: #fafafa;
   margin: 1rem;
   position: sticky;
+  padding: none;
   top: 4rem;
   box-shadow: none;
   border: none;
+
+  .head {
+    border-bottom: gray 1px solid;
+  }
+  .one {
+    color: #2e8b57;
+    font-size: 12pt;
+    &:hover {
+      background: white;
+      padding: 1px;
+      cursor: pointer;
+    }
+  }
+
+  .two {
+    color: #000080;
+    font-size: 12pt;
+    &:hover {
+      background: white;
+      padding: 1px;
+      cursor: pointer;
+    }
+  }
+
+  .three {
+    color: #f9ba32;
+    font-size: 12pt;
+    &:hover {
+      background: white;
+      padding: 1px;
+      cursor: pointer;
+    }
+  }
+
+  .four {
+    color: #ff1493;
+    font-size: 12pt;
+    &:hover {
+      background: white;
+      padding: 1px;
+      cursor: pointer;
+    }
+  }
 }
 
 .cardPeople {

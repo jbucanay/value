@@ -19,7 +19,7 @@ $breakpoints: (
   "tablet": 768px,
   "tablet-wide": 1024px,
   "desktop": 1248px,
-  "desktop-wide": 1440px
+  "desktop-wide": 1494px
 );
 
 @mixin mq($width, $type: min) {
@@ -35,6 +35,7 @@ $breakpoints: (
 }
 
 .navCont {
+  padding: 5px;
   background: $coal;
   display: flex;
   font-family: $mainfont;
