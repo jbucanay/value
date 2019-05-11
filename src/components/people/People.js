@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle } from "reactstrap";
 
 import styles from "./people.module.scss";
 
@@ -25,7 +25,7 @@ export default class People extends Component {
       <div className={styles.peopleCont}>
         <Card className={styles.cardNav}>
           <p className={styles.head}>
-            <i className="fas fa-comment-alt" /> Chat Rooms
+            <i className="fas fa-comment-alt" /> Live chat for..
           </p>
 
           <p className={styles.one}>
@@ -52,18 +52,22 @@ export default class People extends Component {
                   <CardTitle>
                     {`${item.first_name} ${item.last_name}`}
                   </CardTitle>
-                  <CardTitle>
-                    <CardSubtitle>
-                      <p>Chat</p>
-                    </CardSubtitle>
-                  </CardTitle>
                 </CardBody>
               </Card>
             );
           })}
         </div>
         <Card className={styles.cardNav}>
-          <p>Updates</p>
+          <p>Creator</p>
+          <small>
+            <a
+              href="https://www.linkedin.com/in/gilbert-baracka-641346141/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @ Gilbert Baracka{" "}
+            </a>
+          </small>
         </Card>
       </div>
     );

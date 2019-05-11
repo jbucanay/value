@@ -4,7 +4,7 @@ import { Card } from "reactstrap";
 import { getUser } from "../../ducks/signup";
 import styles from "./chat.module.scss";
 import { getMessage } from "../../ducks/peopleChat";
-
+import { Redirect } from "react-router-dom";
 import DisplayChat from "./DisplayChat";
 import io from "socket.io-client";
 import Axios from "axios";
@@ -18,7 +18,9 @@ class Chat extends Component {
       message: "",
       status: "",
       people: [],
-      online: ""
+      online: "",
+      temp: "",
+      togle: true
     };
   }
 
@@ -70,10 +72,17 @@ class Chat extends Component {
     });
   };
 
+  togle = () => {
+    this.setState({
+      togle: !this.state.togle
+    });
+  };
+
   render() {
-    console.log(this.state.message);
+    console.log(this.state.togle);
     return (
       <div className={styles.chatCont}>
+        {!this.props.login && <Redirect to="/login" />}
         <Card className={styles.cardNav}>
           <h4>People</h4>
           {this.state.people
@@ -87,7 +96,7 @@ class Chat extends Component {
             : null}
         </Card>
         <Card className={styles.card}>
-          <DisplayChat />
+          <DisplayChat temp={this.state.temp} />
           <form
             onSubmit={e => {
               const { socket } = this.state;
@@ -103,6 +112,7 @@ class Chat extends Component {
 
               if (this.props.people_id !== "") {
                 let date = new Date().getDay();
+
                 let days = [
                   "Sunday",
                   "Monday",
@@ -115,7 +125,12 @@ class Chat extends Component {
                 Axios.post("/api/message", {
                   people_id: this.props.people_id,
                   message: this.state.message,
-                  day: days[date]
+                  day: days[date],
+                  time: new Date().toLocaleString()
+                }).then(res => {
+                  this.setState({
+                    temp: res.data
+                  });
                 });
                 this.setState({
                   message: ""
@@ -156,7 +171,8 @@ const mapStateToProps = reduxState => {
     firstName: reduxState.signup.firstName,
     lastName: reduxState.signup.lastName,
     image: reduxState.signup.image,
-    people_id: reduxState.signup.people_id
+    people_id: reduxState.signup.people_id,
+    login: reduxState.signup.logedin
   };
 };
 

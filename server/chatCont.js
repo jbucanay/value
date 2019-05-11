@@ -1,12 +1,30 @@
 module.exports = {
   create: async (req, res) => {
     const db = req.app.get("db");
-    const Hold = [req.body];
 
-    const { message, day, people_id } = req.body;
+    const { message, day, people_id, time } = req.body;
     const results = await db
-      .message([message, day, people_id])
+      .message([message, day, people_id, time])
       .catch(err => console.log(err));
-    console.log(results);
+    let date = new Date().getDay();
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+
+    let today = days[date];
+    console.log(today);
+
+    if (results[0].day === today) {
+      let second = await db.getDay(today);
+      let archive = await db.delete(today);
+
+      res.json(second);
+    }
   }
 };

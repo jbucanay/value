@@ -118,7 +118,9 @@ $breakpoints: (
     top: 0;
     z-index: 2;
     justify-content: space-evenly;
-    padding-right: 3rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 
     width: 100%;
     header {
@@ -127,6 +129,7 @@ $breakpoints: (
       width: 4vh;
       img {
         width: 55px;
+        display: none;
       }
     }
     ul {

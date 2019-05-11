@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./chat.module.scss";
+import Select from "./Select";
 
 class DisplayChat extends Component {
   state = {
@@ -18,10 +19,40 @@ class DisplayChat extends Component {
   render() {
     return (
       <div>
+        {this.props.temp
+          ? this.props.temp.reverse().map((item, index) => {
+              return (
+                <div key={index} className={styles.person}>
+                  <p className={styles.very}>
+                    {`${item.time.substr(11, 5)}`}
+
+                    <small className={styles.choose}>
+                      <Select />
+                    </small>
+                  </p>
+
+                  <div>
+                    <img
+                      src={item.image}
+                      alt="people"
+                      className={styles.chatImage}
+                    />
+
+                    <div>
+                      <div className={styles.timeName}>
+                        <p>{`${item.first_name} ${item.last_name}`}</p>
+                      </div>
+                      <small className={styles.smalls}>{item.message}</small>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          : null}
         {this.state.peopleMessages.map((item, index) => {
           return (
             <div key={index} className={styles.person}>
-              <p className={styles.top}>{`${item[0].day}`} </p>
+              <p className={styles.top}>live...</p>
               <div>
                 <img
                   src={item[0].msg.image}
@@ -34,7 +65,7 @@ class DisplayChat extends Component {
                     <p>{`${item[0].msg.firstName} ${item[0].msg.lastName}`}</p>
                     <span>{item[0].time}</span>
                   </div>
-                  <pre>{item[0].msg.message}</pre>
+                  <small className={styles.smalls}>{item[0].msg.message}</small>
                 </div>
               </div>
             </div>

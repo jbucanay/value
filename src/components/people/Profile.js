@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import styles from "./people.module.scss";
+import { Redirect } from "react-router-dom";
 
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
 const Profile = props => {
   return (
     <div className={styles.peopleCont}>
+      {!props.signup.logedin && <Redirect to="/login" />}
       <div>{/* <p></p> */}</div>
       <div className={styles.card}>
         <Card>

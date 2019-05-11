@@ -89,7 +89,6 @@ class Signup extends Component {
                 }
               }}
             />
-            {/* <button onClick={this.handleImage}>Button</button> */}
           </label>
           <label />
           <label htmlFor={"username"}>

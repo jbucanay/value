@@ -4,7 +4,9 @@ $logo: #f9ba32;
 
 .chatCont {
   display: flex;
-
+  .ham {
+    display: none;
+  }
   justify-content: space-around;
   .card {
     border: none;
@@ -14,7 +16,7 @@ $logo: #f9ba32;
     align-items: flex-start;
     width: 27.5%;
     max-height: 93%;
-    margin-top: 3px;
+    margin-top: -5px;
     padding-left: 3px;
     margin: auto;
     display: flex;
@@ -27,7 +29,7 @@ $logo: #f9ba32;
     }
 
     form {
-      margin-top: 2rem;
+      margin-top: 1rem;
       width: 100%;
       z-index: 200;
       background: white;
@@ -64,18 +66,19 @@ $logo: #f9ba32;
     width: 100%;
     display: flex;
     align-items: center;
+    color: red;
   }
 
   .top::before {
     content: "";
-    border-top: $logo 1px solid;
+    border-top: red 1.5px solid;
     width: 50%;
     height: 0.2px;
     margin-right: 1rem;
   }
   .top::after {
     content: "";
-    border-top: $logo 1px solid;
+    border-top: red 1.5px solid;
     display: block;
     width: 50%;
     height: 0.2px;
@@ -151,5 +154,50 @@ $logo: #f9ba32;
   img {
     width: 70px;
     border-radius: 10%;
+  }
+}
+
+.very {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.very::before {
+  content: "";
+  border-top: black 1px solid;
+  width: 100%;
+  height: 0.2px;
+  margin-right: 1rem;
+}
+.very::after {
+  content: "";
+  border-top: black 1px solid;
+  display: block;
+  width: 40%;
+  height: 0.2px;
+  margin-left: 0.2rem;
+}
+
+.smalls {
+  margin-top: -18px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 13pt;
+}
+
+.chatCont {
+  @include mq("navbar", max) {
+    .cardNav {
+      display: none;
+    }
+
+    .cardAbout {
+      display: none;
+    }
+    .ham {
+      display: block;
+      transform: scale(1);
+    }
   }
 }

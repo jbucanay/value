@@ -1,0 +1,1 @@
+DELETE FROM messages WHERE day !=$1 RETURNING*;
