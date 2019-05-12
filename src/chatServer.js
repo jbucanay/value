@@ -42,6 +42,7 @@ io.on("connection", function(socket) {
       time,
       day
     };
+    console.log(socket);
     socket.broadcast.emit("user_message", userMessage);
   });
 });

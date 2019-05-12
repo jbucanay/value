@@ -18,7 +18,6 @@ module.exports = {
     ];
 
     let today = days[date];
-    console.log(today);
 
     if (results[0].day === today) {
       let second = await db.getDay(today);

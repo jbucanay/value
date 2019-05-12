@@ -1,4 +1,5 @@
 @import "./.././navbar/navbar.module.scss";
+@import "./../login/login.module.scss";
 
 .peopleCont {
   display: flex;
@@ -71,4 +72,45 @@
 
 .cardPeople {
   box-shadow: none;
+}
+
+.formCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2%;
+  width: 100%;
+
+  padding-bottom: 2%;
+
+  .loginForm {
+    display: flex;
+    border: #dddddd 1px solid;
+    border-radius: 7px;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+
+    input {
+      width: 100%;
+      border-radius: 3px;
+      line-height: normal;
+      &::placeholder {
+        font-weight: 100;
+        font-size: 10pt;
+        font-style: italic;
+      }
+    }
+
+    input[type="file"] {
+      width: 12rem;
+      //   // color: transparent;
+    }
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3);
+    button {
+      width: 100%;
+    }
+  }
 }

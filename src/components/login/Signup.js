@@ -108,11 +108,10 @@ class Signup extends Component {
               type={"password"}
             />
           </label>
-          {/* <Link to="/"> */}
+
           <Button color="warning" onClick={() => this.handleImage()}>
             Secure submit
           </Button>
-          {/* </Link> */}
         </div>
       </form>
     );

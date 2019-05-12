@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 module.exports = {
   signUpPeople: async (req, res) => {
     const db = req.app.get("db");
-    console.log("SIGNUP: ", req.body);
+
     const { firstName, lastName, url, username, password } = req.body;
 
     const check = await db.verify(username).catch(err => console.log(err));
@@ -59,5 +59,33 @@ module.exports = {
 
   getSession: (req, res) => {
     res.status(200).json(req.session.user);
+  },
+  deleteAccount: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+
+    db.pdelete(+id);
+    res.json("success");
+  },
+
+  update: async (req, res) => {
+    const db = req.app.get("db");
+    const { name, last, username, password, image } = req.body;
+    const { id } = req.params;
+    if (name !== "" && last === "") {
+      let NewName = await db.updateName([name, +id]);
+      console.log("one");
+      res.json(NewName[0]);
+    }
+
+    if (last !== "" && name === "") {
+      let lastName = await db.updateLast([last, +id]);
+      console.log("two");
+      res.json(lastName[0]);
+    } else if (last !== "" && name !== "") {
+      let firstAndLast = await db.firstLast([name, last, +id]);
+      console.log("three");
+      res.json(firstAndLast[0]);
+    }
   }
 };

@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import styles from "./people.module.scss";
 import { Redirect } from "react-router-dom";
-
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { deleteAccount, logout, update } from "../../ducks/signup";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 
 const Profile = props => {
+  const [name, setName] = useState("");
+  const [last, setLast] = useState("");
+
+  const [yes, setYes] = useState(true);
+
   return (
     <div className={styles.peopleCont}>
       {!props.signup.logedin && <Redirect to="/login" />}
@@ -18,11 +30,65 @@ const Profile = props => {
               props.signup.lastName
             }`}</CardTitle>
             <CardSubtitle>
-              <button>Edit Profile</button>
-              <button>Delete Account</button>
+              <Button
+                color="danger"
+                onClick={() => {
+                  props.deleteAccount(props.signup.people_id);
+                  props.logout();
+                }}
+              >
+                Delete account
+              </Button>{" "}
+              {yes ? (
+                <Button color="success" onClick={() => setYes(!yes)}>
+                  Done
+                </Button>
+              ) : (
+                <Button color="success" onClick={() => setYes(!yes)}>
+                  Edit account
+                </Button>
+              )}
             </CardSubtitle>
           </CardBody>
         </Card>
+        {yes ? (
+          <form className={styles.formCont}>
+            <div className={styles.loginForm}>
+              <label htmlFor={"first"}>
+                <p>New first name</p>
+                <input
+                  value={name}
+                  placeholder={`change ${props.signup.firstName}`}
+                  name="firstName"
+                  id={"first"}
+                  onChange={e => setName(e.target.value)}
+                />
+              </label>
+              <label htmlFor={"last"}>
+                <p>New last name</p>
+                <input
+                  value={last}
+                  placeholder={`change ${props.signup.lastName}`}
+                  name="lastName"
+                  id={"last"}
+                  onChange={e => setLast(e.target.value)}
+                />
+              </label>
+
+              <Button
+                color="success"
+                onClick={() => {
+                  props.update(props.signup.people_id, name, last);
+
+                  setName("");
+                  setLast("");
+                }}
+              >
+                Update
+              </Button>
+            </div>
+          </form>
+        ) : null}
       </div>
     </div>
   );
@@ -30,4 +96,9 @@ const Profile = props => {
 
 const mapStateToprops = reduxState => reduxState;
 
-export default connect(mapStateToprops)(Profile);
+export default connect(
+  mapStateToprops,
+  { deleteAccount, logout, update }
+)(Profile);
+
+// onClick={() => this.handleImage()}

@@ -7,7 +7,9 @@ const {
   signUpPeople,
   login,
   getSession,
-  logout
+  logout,
+  deleteAccount,
+  update
 } = require("./controller/controller");
 const { display } = require("./controller/cards");
 const { create } = require("./chatCont");
@@ -45,5 +47,7 @@ app.get("/api/people", display);
 app.get("/api/user", getSession);
 app.get("/", logout);
 app.post("/api/message", create);
+app.delete("/api/delete/:id", deleteAccount);
+app.put(`/api/update/:id`, update);
 
 app.listen(PORT, () => console.log(`server on ${PORT}`));

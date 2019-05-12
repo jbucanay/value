@@ -15,6 +15,27 @@ const people = {
   reload: ""
 };
 
+export function update(id, name, last) {
+  return {
+    type: a.UPDATE,
+    payload: Axios.put(`/api/update/${id}`, {
+      name,
+      last
+    }).then(result => {
+      return result;
+    })
+  };
+}
+
+export function deleteAccount(id) {
+  return {
+    type: a.DELETE,
+    payload: Axios.delete(`/api/delete/${id}`).then(res => {
+      return res.data;
+    })
+  };
+}
+
 export function newSignUp(firstName, lastName, username, url, password) {
   console.log(url);
   return {
@@ -108,7 +129,21 @@ export default function reducer(state = people, action) {
           window.location.reload();
         })()
       };
-
+    case `${a.DELETE}_FULFILLED`:
+      console.log(action.payload);
+      return {
+        ...state,
+        logedin: false
+      };
+    case `${a.UPDATE}_FULFILLED`:
+      console.log(action.payload);
+      return {
+        ...state,
+        firstName: action.payload.data.first_name,
+        lastName: action.payload.data.last_name,
+        image: action.payload.data.image,
+        people_id: action.payload.data.people_id
+      };
     default:
       return state;
   }

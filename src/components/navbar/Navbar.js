@@ -6,7 +6,6 @@ import { logout } from "../../ducks/signup";
 import { Link } from "react-router-dom";
 
 const Navbar = props => {
-  console.log(props.logIn);
   return (
     <nav className={styles.navCont}>
       <header>

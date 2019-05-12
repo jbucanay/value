@@ -7,6 +7,8 @@ const actions = {
   STATUS: "STATUS",
   GETUSER: "GETUSER",
   LOGOUT: "LOGOUT",
+  DELETE: "DELETE",
+  UPDATE: "UPDATE",
   //// chat
   MESSAGE: "MESSAGE"
 };

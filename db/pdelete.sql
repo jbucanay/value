@@ -1,0 +1,1 @@
+delete from people where people_id = $1 returning*;
