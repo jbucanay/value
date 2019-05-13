@@ -64,15 +64,6 @@ export function logout() {
   };
 }
 
-export function getUser() {
-  return {
-    type: a.GETUSER,
-    payload: Axios.get("/api/user").then(res => {
-      return res.data;
-    })
-  };
-}
-
 export default function reducer(state = people, action) {
   switch (action.type) {
     case `${a.SIGNUP}_FULFILLED`:

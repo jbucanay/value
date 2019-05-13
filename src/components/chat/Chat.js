@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Card } from "reactstrap";
-import { getUser } from "../../ducks/signup";
+import { loginUser } from "../../ducks/signup";
 import styles from "./chat.module.scss";
 import { getMessage } from "../../ducks/peopleChat";
 import { Redirect } from "react-router-dom";
@@ -17,7 +17,6 @@ class Chat extends Component {
       socket: null,
       message: "",
       status: "",
-      people: [],
       online: "",
       temp: "",
       togle: true,
@@ -39,11 +38,6 @@ class Chat extends Component {
     });
   };
   componentDidMount() {
-    Axios.get("/api/people").then(results =>
-      this.setState({
-        people: results.data
-      })
-    );
     if (this.props.firstName !== "" && this.props.firstName !== "") {
       const { socket } = this.state;
 
@@ -84,6 +78,7 @@ class Chat extends Component {
   };
 
   render() {
+    console.log(this.props.login);
     return (
       <div className={styles.chatCont}>
         {!this.props.login && <Redirect to="/login" />}
@@ -97,19 +92,15 @@ class Chat extends Component {
           </p>
         )}
         <Card className={styles.cardNav}>
-          <h4>People</h4>
-          {this.state.people
-            ? this.state.people.map(item => {
-                return (
-                  <Card key={item.people_id} className={styles.cardPeople}>
-                    <p> {`${item.first_name} ${item.last_name}`}</p>
-                  </Card>
-                );
-              })
-            : null}
+          <h4>Etiquette</h4>
+          <small>
+            Etiquette means behaving yourself a little better than is absolutely
+            essential <br />
+            <strong> Will Cuppy</strong>
+          </small>
         </Card>
         <Card className={styles.card}>
-          <DisplayChat temp={this.state.temp} online={this.state.online} />
+          <DisplayChat temp={this.state.temp} />
           <form
             onSubmit={e => {
               const { socket } = this.state;
@@ -197,5 +188,5 @@ const mapStateToProps = reduxState => {
 
 export default connect(
   mapStateToProps,
-  { getMessage, getUser }
+  { getMessage, loginUser }
 )(Chat);

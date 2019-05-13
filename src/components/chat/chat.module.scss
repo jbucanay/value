@@ -113,16 +113,6 @@ $logo: #f9ba32;
   }
 }
 
-.cardPeople {
-  box-shadow: none;
-  border: none;
-  border-radius: none;
-  background: none;
-  p {
-    color: black;
-  }
-}
-
 .cardNav {
   position: sticky;
   bottom: 0;
@@ -132,12 +122,20 @@ $logo: #f9ba32;
   height: 300%;
 
   overflow: scroll;
-  background: #3375aa;
+  background: #2f3131;
   box-shadow: none;
   border: none;
   padding-left: 1rem;
   h4 {
-    color: black;
+    color: white;
+  }
+  small {
+    color: white;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 12pt;
+    strong {
+      color: #f9ba32;
+    }
   }
 }
 
