@@ -3,11 +3,13 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const moment = require("moment");
 
-const PORT = 3131;
+const PORT = process.env.PORT || 3131;
 
 server.listen(PORT, () => {
   console.log("chat server on  " + PORT);
 });
+
+app.use(express.static(`${__dirname}/../build`));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "src/chatServer.js");
