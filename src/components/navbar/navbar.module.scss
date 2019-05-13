@@ -11,7 +11,7 @@ $breakpoints: (
   "phone-wide": 480px,
   "medium": 997px,
   "tablet-small": 640px,
-  "galaxy": 360px,
+  "galaxy": 330px,
   "navbar": 865px,
   "login": 1495,
   "small": 549px,
@@ -104,14 +104,18 @@ $breakpoints: (
   @include mq("navbar", max) {
     display: flex;
     justify-content: space-evenly;
+
     header {
       display: hidden;
+      img {
+        display: none;
+      }
     }
   }
 }
 
 .navCont {
-  @include mq("iphone", max) {
+  @include mq("navbar", max) {
     box-shadow: none;
     height: 6vh;
     position: sticky;
@@ -141,6 +145,16 @@ $breakpoints: (
         background: none;
         padding: none;
         all: unset;
+      }
+    }
+  }
+}
+
+.navCont {
+  @include mq("galaxy", max) {
+    header {
+      svg {
+        display: none;
       }
     }
   }

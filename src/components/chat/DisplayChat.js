@@ -20,11 +20,11 @@ class DisplayChat extends Component {
     return (
       <div>
         {this.props.temp
-          ? this.props.temp.reverse().map((item, index) => {
+          ? this.props.temp.map((item, index) => {
               return (
                 <div key={index} className={styles.person}>
                   <p className={styles.very}>
-                    {`${item.time.substr(11, 5)}`}
+                    {`${item.time.substr(10, 6)}`}
 
                     <small className={styles.choose}>
                       <Select />

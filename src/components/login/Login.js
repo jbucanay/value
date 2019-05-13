@@ -31,6 +31,11 @@ class Login extends Component {
   render() {
     return (
       <form className={styles.formCont}>
+        <img
+          className={styles.ham}
+          src="https://i.postimg.cc/mkFGCFCV/logo-via-logohub-7.png"
+          alt="logo"
+        />
         <div className={styles.loginForm}>
           <label htmlFor={"username"}>
             {" "}
@@ -53,6 +58,7 @@ class Login extends Component {
               type={"password"}
             />
           </label>
+
           <Link to="/">
             <Button
               color="warning"
@@ -62,6 +68,7 @@ class Login extends Component {
               Log in
             </Button>{" "}
           </Link>
+
           <p className={styles.p}>.</p>
           <Link to="/signup">
             {" "}

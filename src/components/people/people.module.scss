@@ -4,7 +4,9 @@
 .peopleCont {
   display: flex;
   width: 100%;
-
+  .ham {
+    display: none;
+  }
   justify-content: center;
   .card {
     align-content: center;
@@ -111,6 +113,23 @@
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3);
     button {
       width: 100%;
+    }
+  }
+}
+
+.peopleCont {
+  @include mq("navbar", max) {
+    .ham {
+      display: block;
+      color: #f9ba32;
+      position: fixed;
+      top: 5px;
+      left: 3rem;
+      z-index: 4;
+      width: 5rem;
+    }
+    .cardNav {
+      display: none;
     }
   }
 }

@@ -91,7 +91,7 @@ export default function reducer(state = people, action) {
         lastName: action.payload.data.second,
         image: action.payload.data.image,
         logedin: true,
-        error: false
+        error: true
       };
 
     case `${a.LOGIN}_FULFILLED`:
@@ -101,8 +101,7 @@ export default function reducer(state = people, action) {
         lastName: action.payload.data.second,
         image: action.payload.data.image,
         people_id: action.payload.data.people_id,
-        logedin: true,
-        error: false
+        logedin: true
       };
 
     case `${a.LOGIN}_REJECTED`:

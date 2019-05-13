@@ -2,6 +2,7 @@ const app = require("express")();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const moment = require("moment");
+
 const PORT = 3131;
 
 server.listen(PORT, () => {
@@ -34,6 +35,17 @@ io.on("connection", function(socket) {
       console.log("user diconnected");
     });
   });
+
+  socket.on("typing", typer => {
+    socket.broadcast.emit("incoming", typer);
+
+    socket.on("clear", () => {
+      typer = "";
+
+      socket.broadcast.emit("incoming", typer);
+    });
+  });
+
   socket.on("message", msg => {
     const time = moment().format("LT");
     const day = moment().format("dddd");
@@ -42,7 +54,7 @@ io.on("connection", function(socket) {
       time,
       day
     };
-    console.log(socket);
+
     socket.broadcast.emit("user_message", userMessage);
   });
 });

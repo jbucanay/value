@@ -20,7 +20,9 @@ class Chat extends Component {
       people: [],
       online: "",
       temp: "",
-      togle: true
+      togle: true,
+      slide: "yes",
+      typer: ""
     };
   }
 
@@ -31,9 +33,7 @@ class Chat extends Component {
 
   initSocket = () => {
     const socket = io(socketUri);
-    socket.on("connect", () => {
-      console.log("conected");
-    });
+    socket.on("connect", () => {});
     this.setState({
       socket
     });
@@ -59,6 +59,9 @@ class Chat extends Component {
           this.setState({ online });
         });
       });
+      socket.on("incoming", typer => {
+        this.setState({ typer });
+      });
     }
     const { socket } = this.state;
     socket.on("user_message", userMessage => {
@@ -67,6 +70,8 @@ class Chat extends Component {
   }
 
   makeMessage = e => {
+    const { socket } = this.state;
+    socket.emit("typing", this.props.firstName);
     this.setState({
       message: e.target.value
     });
@@ -79,10 +84,18 @@ class Chat extends Component {
   };
 
   render() {
-    console.log(this.state.togle);
     return (
       <div className={styles.chatCont}>
         {!this.props.login && <Redirect to="/login" />}
+        {this.state.togle ? (
+          <p className={styles.ham} onClick={this.togle}>
+            &#x58;
+          </p>
+        ) : (
+          <p className={styles.ham} onClick={this.togle}>
+            &#9776;
+          </p>
+        )}
         <Card className={styles.cardNav}>
           <h4>People</h4>
           {this.state.people
@@ -96,7 +109,7 @@ class Chat extends Component {
             : null}
         </Card>
         <Card className={styles.card}>
-          <DisplayChat temp={this.state.temp} />
+          <DisplayChat temp={this.state.temp} online={this.state.online} />
           <form
             onSubmit={e => {
               const { socket } = this.state;
@@ -109,6 +122,7 @@ class Chat extends Component {
               };
               e.preventDefault();
               socket.emit("message", userMessage);
+              socket.emit("clear");
 
               if (this.props.people_id !== "") {
                 let date = new Date().getDay();
@@ -145,14 +159,18 @@ class Chat extends Component {
             />
           </form>
         </Card>
-        <Card className={styles.cardAbout}>
-          <p>online </p>
+        <Card className={this.state.togle ? styles.yes : styles.cardAbout}>
+          <p className={this.state.togle && styles.innerp}>
+            online{" "}
+            {this.state.online &&
+              this.state.online.filter(item => item !== null).length}
+          </p>
           {this.state.online &&
             this.state.online
               .filter(item => item !== null)
               .map((item, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} className={this.state.togle && styles.names}>
                     <p>
                       {item.firstName} {item.lastName}
                     </p>
@@ -160,6 +178,7 @@ class Chat extends Component {
                   </div>
                 );
               })}
+          <p>{this.state.typer && `${this.state.typer}... is typing`}</p>
         </Card>
       </div>
     );

@@ -23,6 +23,12 @@ export default class People extends Component {
   render() {
     return (
       <div className={styles.peopleCont}>
+        <img
+          className={styles.ham}
+          src="https://i.postimg.cc/mkFGCFCV/logo-via-logohub-7.png"
+          alt="logo"
+        />
+
         <Card className={styles.cardNav}>
           <p className={styles.head}>
             <i className="fas fa-comment-alt" /> Live chat for..

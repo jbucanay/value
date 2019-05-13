@@ -21,6 +21,11 @@ const Profile = props => {
   return (
     <div className={styles.peopleCont}>
       {!props.signup.logedin && <Redirect to="/login" />}
+      <img
+        className={styles.ham}
+        src="https://i.postimg.cc/mkFGCFCV/logo-via-logohub-7.png"
+        alt="logo"
+      />
       <div>{/* <p></p> */}</div>
       <div className={styles.card}>
         <Card>

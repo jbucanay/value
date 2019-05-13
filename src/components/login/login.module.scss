@@ -5,6 +5,9 @@ body {
 }
 
 .formCont {
+  .ham {
+    display: none;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,6 +135,20 @@ p {
     .loginForm {
       width: 15vw;
       padding: 15px 15px;
+    }
+  }
+}
+
+.formCont {
+  @include mq("navbar", max) {
+    .ham {
+      display: block;
+      color: #f9ba32;
+      position: fixed;
+      top: 5px;
+      left: 3rem;
+      z-index: 4;
+      width: 5rem;
     }
   }
 }
