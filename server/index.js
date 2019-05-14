@@ -1,3 +1,4 @@
+const path = require("path");
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -17,6 +18,7 @@ const { create } = require("./chatCont");
 ///// ws
 
 ////
+
 app.use(express.static(`${__dirname}/../build`));
 
 app.use(express.json());

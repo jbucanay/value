@@ -10,8 +10,6 @@ server.listen(PORT, () => {
   console.log("chat server on  " + PORT);
 });
 
-app.use(express.static(`${__dirname}/../build`));
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "src/chatServer.js");
 });
