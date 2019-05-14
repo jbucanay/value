@@ -1,10 +1,9 @@
-const express = require("express");
-const app = express();
+const app = require("express")();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const moment = require("moment");
 
-const PORT = process.env.PORT || 3131;
+const PORT = 3131;
 
 server.listen(PORT, () => {
   console.log("chat server on  " + PORT);
