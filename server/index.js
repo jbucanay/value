@@ -14,10 +14,6 @@ const {
 const { display } = require("./controller/cards");
 const { create } = require("./chatCont");
 
-///// ws
-
-////
-
 app.use(express.static(`${__dirname}/../build`));
 
 app.use(express.json());
