@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./chat.module.scss";
-import Select from "./Select";
 
 class DisplayChat extends Component {
   state = {
@@ -19,7 +18,7 @@ class DisplayChat extends Component {
   render() {
     return (
       <div>
-        {this.props.temp
+        {/* {this.props.temp
           ? this.props.temp.map((item, index) => {
               return (
                 <div key={index} className={styles.person}>
@@ -48,7 +47,7 @@ class DisplayChat extends Component {
                 </div>
               );
             })
-          : null}
+          : null} */}
         {this.state.peopleMessages.map((item, index) => {
           return (
             <div key={index} className={styles.person}>
