@@ -5,7 +5,7 @@ const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const moment = require("moment");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3131;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "src/chatServer.js");

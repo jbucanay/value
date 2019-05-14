@@ -8,8 +8,9 @@ import { Redirect } from "react-router-dom";
 import DisplayChat from "./DisplayChat";
 import io from "socket.io-client";
 import Axios from "axios";
-
-const socketUri = "157.230.224.104:3131";
+// "localhost:3131";
+const socketUri = "http://157.230.224.104:3131";
+// http://157.230.224.104
 
 class Chat extends Component {
   constructor(props) {
