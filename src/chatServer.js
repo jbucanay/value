@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const moment = require("moment");
 
-const PORT = process.env.PORT || 3131;
+const PORT = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "src/chatServer.js");
