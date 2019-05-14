@@ -1,17 +1,15 @@
-const app = require("express")();
+const express = require("express");
+const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const moment = require("moment");
 
-const PORT = 3131;
-
-server.listen(PORT, () => {
-  console.log("chat server on  " + PORT);
-});
+const PORT = process.env.PORT || 3131;
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "src/chatServer.js");
 });
+app.use(express.static(`${__dirname}/../build`));
 
 const getVisitors = () => {
   let clients = io.sockets.clients().connected;
@@ -57,4 +55,12 @@ io.on("connection", function(socket) {
 
     socket.broadcast.emit("user_message", userMessage);
   });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
+
+server.listen(PORT, () => {
+  console.log("chat server on  " + PORT);
 });
