@@ -151,7 +151,7 @@ $breakpoints: (
 }
 
 .navCont {
-  @include mq("galaxy", max) {
+  @include mq("iphone", max) {
     header {
       svg {
         display: none;
