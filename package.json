@@ -31,8 +31,7 @@
     "ws": "7.0.0"
   },
   "scripts": {
-    "start": "node src/chatServer.js",
-    "dev": "concurrentely 'npm run react' 'npm run server'",
+    "start": "concurrentely 'npm run react' 'npm run server'",
     "server": "nodemon src/chatServer.js",
     "react": "react-scripts start",
     "build": "react-scripts build",
