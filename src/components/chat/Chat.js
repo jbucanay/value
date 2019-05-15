@@ -150,6 +150,11 @@ class Chat extends Component {
               value={this.state.message}
             />
           </form>
+          {this.state.togle && (
+            <small>
+              {this.state.typer && `${this.state.typer}... is typing`}
+            </small>
+          )}
         </Card>
         <Card className={this.state.togle ? styles.yes : styles.cardAbout}>
           <p className={this.state.togle && styles.innerp}>
